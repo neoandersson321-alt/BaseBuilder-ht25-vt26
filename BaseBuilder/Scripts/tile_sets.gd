@@ -9,19 +9,23 @@ var build_mode: bool = false
 var build_valid: bool = false
 var preview_node: Node
 
-@onready var BaseLayer: TileMapLayer = $BaseLayer
-@onready var OutlineLayer: TileMapLayer = $OutlineLayer
+@onready var base_layer: TileMapLayer = %BaseLayer
+@onready var outline_layer: TileMapLayer = %OutlineLayer
+
 
 func _ready() -> void:
+	
+	print("BaseLayer: ", base_layer)
+	print("OutlineLayer: ", outline_layer)
+	
 	for x in range(gridsize):
 		for y in range(gridsize):
 			var pos = Vector2i(x, y)
 			Dic[pos] = {
 				"Type":"Grass"
-				
 				}
 			
-			BaseLayer.set_cell(pos, 0, Vector2i(0, 0))
+			base_layer.set_cell(pos, 0, Vector2i(0,0), 0)
 
 
 func _process(_delta: float) -> void:
@@ -36,54 +40,33 @@ func _input(event: InputEvent) -> void:
 		_change_tile("BUILDING")
 		_place_building("ex_canon")
 	
-	
-	if event.is_action_pressed("BuildMode"):
-		if build_mode:
-			build_mode = false
-			preview_node.queue_free()
-		else:
-			_set_building_preview("ex_canon")
-			build_mode = true
-
+	#
+	#if event.is_action_pressed("BuildMode"):
+		#if build_mode:
+			#build_mode = false
+			#preview_node.queue_free()
+		#else:
+			#_set_building_preview("ex_canon")
+			#build_mode = true
+#
 
 
 func _outline():
 	var tile = get_tile()
 	
-	OutlineLayer.clear()
+	outline_layer.clear()
 	if Dic.has(tile):
-		OutlineLayer.set_cell(tile, 0, Vector2i.ZERO)
-
-
-func _chose_tile() -> int:
-	if current_tile == "GRASS":
-		return 0
-	elif current_tile == "WATER":
-		return 1
-	return 0
+		outline_layer.set_cell(tile, 0, Vector2i.ZERO)
 
 
 func _change_tile(tile):
 	Dic[get_tile()] = {"Type": tile}
-	
 
 
 func get_tile() -> Vector2i:
-	return Vector2i(BaseLayer.local_to_map(BaseLayer.get_local_mouse_position()))
+	return Vector2i(base_layer.local_to_map(base_layer.get_local_mouse_position()))
 
 
-func _set_building_preview(building_type):
-	var drag_building = load("res://Scenes/Buildings/" + building_type + ".tscn").instantiate()
-	drag_building.set_name("Drag_building")
-	drag_building.modulate = Color("ad54ff3c")
-	drag_building.z_index = 100
-	
-	var control = Control.new()
-	control.add_child(drag_building, true)
-	control.position = Vector2(64 + get_tile().x * 128, 64 + get_tile().y * 128)
-	control.set_name("Building_preview")
-	add_child(control, true)
-	preview_node = control
 
 
 func _change_preview_position():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcf1bieb7hple"
-path="res://.godot/imported/ex_canon.png-ce6b0ea6c7c237847c374511dd52c89f.ctex"
+uid="uid://brivunkbeeqhl"
+path="res://.godot/imported/button_rectangle_depth_gradient.png-779a85e4b35560b3102f1093c0558957.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ex_canon.png"
-dest_files=["res://.godot/imported/ex_canon.png-ce6b0ea6c7c237847c374511dd52c89f.ctex"]
+source_file="res://Resources/UI/Buttons/button_rectangle_depth_gradient.png"
+dest_files=["res://.godot/imported/button_rectangle_depth_gradient.png-779a85e4b35560b3102f1093c0558957.ctex"]
 
 [params]
 

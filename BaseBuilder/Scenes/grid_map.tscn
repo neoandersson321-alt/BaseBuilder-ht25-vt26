@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3l8pjglwhk1g"]
+
+[ext_resource type="Script" uid="uid://b03a8t88lgck4" path="res://Scripts/tile_sets.gd" id="1_nsxs3"]
+[ext_resource type="Texture2D" uid="uid://dimd5qu6skijy" path="res://Resources/ex_tile.png" id="2_x3pud"]
+[ext_resource type="Texture2D" uid="uid://chmidepvewlcp" path="res://Resources/ex_outline.png" id="4_hkhje"]
+[ext_resource type="PackedScene" uid="uid://dm0q6hu2fwkjn" path="res://Scenes/Buildings/GunT1.tscn" id="4_p6vva"]
+[ext_resource type="PackedScene" uid="uid://i45ydlrsaqgo" path="res://Scenes/Buildings/GunT2.tscn" id="5_hkhje"]
+[ext_resource type="PackedScene" uid="uid://d1o7iy3dgp2pp" path="res://Scenes/Buildings/MissileT1.tscn" id="6_508yg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
+texture = ExtResource("2_x3pud")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_272bh"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_7mycd")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
+texture = ExtResource("4_hkhje")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kek77"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_5vw27")
+
+[node name="GridMap" type="Node2D"]
+script = ExtResource("1_nsxs3")
+
+[node name="BaseLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_272bh")
+
+[node name="OutlineLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+z_index = 1
+tile_set = SubResource("TileSet_kek77")
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="GunT1" parent="Buildings" instance=ExtResource("4_p6vva")]
+position = Vector2(606, 264)
+
+[node name="GunT2" parent="Buildings" instance=ExtResource("5_hkhje")]
+position = Vector2(172, 211)
+
+[node name="MissileT1" parent="Buildings" instance=ExtResource("6_508yg")]
+position = Vector2(316, 510)
