@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx4xqr5ol1u8x"]
+
+[ext_resource type="Texture2D" uid="uid://dcf1bieb7hple" path="res://ex_canon.png" id="1_nqidm"]
+[ext_resource type="Script" uid="uid://gyaphwckq2jv" path="res://ex_canon.gd" id="1_pblgf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pblgf"]
+size = Vector2(128, 128)
+
+[node name="ExCanon" type="StaticBody2D"]
+script = ExtResource("1_pblgf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nqidm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pblgf")
