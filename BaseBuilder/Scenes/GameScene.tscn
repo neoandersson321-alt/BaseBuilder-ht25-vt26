@@ -7,10 +7,16 @@
 [ext_resource type="Script" uid="uid://dejioli3i5fyo" path="res://Scripts/ui.gd" id="3_kilg5"]
 [ext_resource type="Texture2D" uid="uid://4xvu43538p0d" path="res://Resources/Towers/towerDefense_tile251.png" id="4_jwv4s"]
 
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer")]
 script = ExtResource("1_lohlh")
+BaseLayer = NodePath("GridMap/BaseLayer")
+BuildingLayer = NodePath("GridMap/BuildingLayer")
+OutlineLayer = NodePath("GridMap/OutlineLayer")
 
 [node name="GridMap" parent="." instance=ExtResource("1_jjgbg")]
+
+[node name="BuildingLayer" parent="GridMap" index="2"]
+modulate = Color(1, 1, 1, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_kilg5")
@@ -22,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="BuildBar" type="HBoxContainer" parent="UI/HUD"]
 custom_minimum_size = Vector2(1000, 200)

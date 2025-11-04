@@ -9,14 +9,11 @@ var build_mode: bool = false
 var build_valid: bool = false
 var preview_node: Node
 
-@onready var base_layer: TileMapLayer = %BaseLayer
-@onready var outline_layer: TileMapLayer = %OutlineLayer
-
+@onready var base_layer: TileMapLayer = $BaseLayer
+@onready var outline_layer: TileMapLayer = $OutlineLayer
+@onready var building_layer: TileMapLayer = $BuildingLayer
 
 func _ready() -> void:
-	
-	print("BaseLayer: ", base_layer)
-	print("OutlineLayer: ", outline_layer)
 	
 	for x in range(gridsize):
 		for y in range(gridsize):
@@ -28,18 +25,7 @@ func _ready() -> void:
 			base_layer.set_cell(pos, 0, Vector2i(0,0), 0)
 
 
-func _process(_delta: float) -> void:
-	_outline()
-	if build_mode:
-		_change_preview_position()
-		_check_building_validity()
 
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Left_Click") and build_mode and build_valid:
-		_change_tile("BUILDING")
-		_place_building("ex_canon")
-	
 	#
 	#if event.is_action_pressed("BuildMode"):
 		#if build_mode:
@@ -51,12 +37,6 @@ func _input(event: InputEvent) -> void:
 #
 
 
-func _outline():
-	var tile = get_tile()
-	
-	outline_layer.clear()
-	if Dic.has(tile):
-		outline_layer.set_cell(tile, 0, Vector2i.ZERO)
 
 
 func _change_tile(tile):
@@ -64,7 +44,7 @@ func _change_tile(tile):
 
 
 func get_tile() -> Vector2i:
-	return Vector2i(base_layer.local_to_map(base_layer.get_local_mouse_position()))
+	return Vector2i(building_layer.local_to_map(building_layer.get_local_mouse_position()))
 
 
 
