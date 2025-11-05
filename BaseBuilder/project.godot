@@ -14,11 +14,12 @@ config/name="Base Builder ht25-vt26"
 run/main_scene="uid://cif52rfmbja27"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(2.10572e-07, 0.114287, 0.157405, 1)
-config/icon="res://Resources/icon.svg"
+boot_splash/image="uid://djxhp4s0yjp3y"
+config/icon="res://Resources/Tiles/icon.svg"
 
 [autoload]
 
-GameData="*res://Singletons/GameData.gd"
+GameData="*res://AutoLoads/game_data.gd"
 
 [display]
 

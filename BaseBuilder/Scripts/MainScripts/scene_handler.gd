@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _on_new_game_pressed():
 	main_menu.queue_free()
-	var game_scene = load("res://Scenes/GameScene.tscn").instantiate()
+	var game_scene = load("res://Scenes/MainScenes/game_scene.tscn").instantiate()
 	add_child(game_scene)
 
 

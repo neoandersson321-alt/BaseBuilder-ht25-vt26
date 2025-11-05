@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcf1bieb7hple"
-path="res://.godot/imported/ex_canon.png-3239a7c4137633a6b1d2f40194b12d3a.ctex"
+uid="uid://dimd5qu6skijy"
+path="res://.godot/imported/ex_tile.png-0204479c2569c3bd7343ae892017cecc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/ex_canon.png"
-dest_files=["res://.godot/imported/ex_canon.png-3239a7c4137633a6b1d2f40194b12d3a.ctex"]
+source_file="res://Resources/Towers/ex_tile.png"
+dest_files=["res://.godot/imported/ex_tile.png-0204479c2569c3bd7343ae892017cecc.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvc3mvkbsd1c3"
-path="res://.godot/imported/BackGround.png-e8a5c3c92cee8c24a6b5a61c43040ce4.ctex"
+uid="uid://chmidepvewlcp"
+path="res://.godot/imported/ex_outline.png-884b789f988dd3862a0c619a6e651dc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/BackGround.png"
-dest_files=["res://.godot/imported/BackGround.png-e8a5c3c92cee8c24a6b5a61c43040ce4.ctex"]
+source_file="res://Resources/Tiles/ex_outline.png"
+dest_files=["res://.godot/imported/ex_outline.png-884b789f988dd3862a0c619a6e651dc3.ctex"]
 
 [params]
 

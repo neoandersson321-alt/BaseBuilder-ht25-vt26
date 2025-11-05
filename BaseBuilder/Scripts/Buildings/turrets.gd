@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var Turret = $Turret
+@onready var turret = $Turret
 
 func _physics_process(delta: float) -> void:
 	_turn()
@@ -8,4 +8,4 @@ func _physics_process(delta: float) -> void:
 
 func _turn():
 	var enemy_position = get_global_mouse_position()
-	Turret.look_at(enemy_position)
+	turret.look_at(enemy_position)

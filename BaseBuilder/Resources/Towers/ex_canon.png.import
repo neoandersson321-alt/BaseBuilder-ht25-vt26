@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chmidepvewlcp"
-path="res://.godot/imported/ex_outline.png-a38c6d35d413ee33f9062e2a056be63c.ctex"
+uid="uid://dcf1bieb7hple"
+path="res://.godot/imported/ex_canon.png-c5640e5a582e50cb453edf4f512d6908.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/ex_outline.png"
-dest_files=["res://.godot/imported/ex_outline.png-a38c6d35d413ee33f9062e2a056be63c.ctex"]
+source_file="res://Resources/Towers/ex_canon.png"
+dest_files=["res://.godot/imported/ex_canon.png-c5640e5a582e50cb453edf4f512d6908.ctex"]
 
 [params]
 

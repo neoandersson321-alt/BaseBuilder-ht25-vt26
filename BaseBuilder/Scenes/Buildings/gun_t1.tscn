@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dm0q6hu2fwkjn"]
 
 [ext_resource type="Texture2D" uid="uid://bbxu5a3hio4dl" path="res://Resources/Towers/towerDefense_tile181.png" id="1_0cjmx"]
-[ext_resource type="Script" uid="uid://dtc6jprex33xw" path="res://Scripts/Buildings/gun_t_1.gd" id="1_d3djr"]
+[ext_resource type="Script" uid="uid://dtc6jprex33xw" path="res://Scripts/Buildings/gun_t1.gd" id="1_d3djr"]
 [ext_resource type="Texture2D" uid="uid://djxhp4s0yjp3y" path="res://Resources/Towers/towerDefense_tile249.png" id="2_d3djr"]
 
 [node name="GunT1" type="Node2D"]

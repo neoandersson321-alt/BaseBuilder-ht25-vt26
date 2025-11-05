@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx4xqr5ol1u8x"]
 
-[ext_resource type="Texture2D" uid="uid://dcf1bieb7hple" path="res://Resources/ex_canon.png" id="1_nqidm"]
-[ext_resource type="Script" uid="uid://gyaphwckq2jv" path="res://Scripts/ex_canon.gd" id="1_pblgf"]
+[ext_resource type="Texture2D" uid="uid://dcf1bieb7hple" path="res://Resources/Towers/ex_canon.png" id="1_nqidm"]
+[ext_resource type="Script" uid="uid://gyaphwckq2jv" path="res://Scripts/Buildings/ex_canon.gd" id="1_pblgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pblgf"]
 size = Vector2(128, 128)

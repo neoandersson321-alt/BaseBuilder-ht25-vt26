@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func initiate_build_mode(tower_type):
 	if build_mode:
 		cancel_build_mode()
-	build_type = tower_type + "T1"
+	build_type = tower_type + "_t1"
 	build_mode = true
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
 
