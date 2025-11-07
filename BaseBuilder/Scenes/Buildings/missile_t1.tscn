@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1o7iy3dgp2pp"]
+[gd_scene load_steps=6 format=3 uid="uid://d1o7iy3dgp2pp"]
 
 [ext_resource type="Script" uid="uid://bxy7phl7bbeq7" path="res://Scripts/Buildings/missile_t1.gd" id="1_j10f4"]
 [ext_resource type="Texture2D" uid="uid://d2kdrkiel68sd" path="res://Resources/Towers/towerDefense_tile180.png" id="1_qu2v4"]
 [ext_resource type="Texture2D" uid="uid://bhyl3yhmvypm3" path="res://Resources/Towers/towerDefense_tile228.png" id="2_j10f4"]
 [ext_resource type="Texture2D" uid="uid://4xvu43538p0d" path="res://Resources/Towers/towerDefense_tile251.png" id="3_5xlxi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujg6a"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MissileT1" type="Node2D"]
 scale = Vector2(2, 2)
@@ -23,3 +26,10 @@ texture = ExtResource("3_5xlxi")
 [node name="Missile2" type="Sprite2D" parent="Turret"]
 position = Vector2(5, 10)
 texture = ExtResource("3_5xlxi")
+
+[node name="UpgradeButton" type="Button" parent="."]
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ujg6a")

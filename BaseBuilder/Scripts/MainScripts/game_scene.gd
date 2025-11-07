@@ -50,12 +50,6 @@ func update_tower_preview():
 
 	# get_cell_source_id() gör att vi kan få tag på en cell, om den är tom blir resultatet == -1
 	if BuildingLayer.get_cell_source_id(current_tile) == -1: # Det vi kollar här är ifall det finns någon tile i vårat building lager
-		#for t in $GridMap/Buildings.get_children():
-			#print(t)
-			#if t.position == tile_position:
-				#$UI.update_tower_preview(tile_position, "ff2016a7")
-				#build_valid = false
-				#return
 		$UI.update_tower_preview(tile_position, "91ff63ca")
 		build_valid = true
 		build_location = tile_position

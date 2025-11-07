@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-var tower_range  = 700
 
 func set_tower_preview(tower_type, mouse_position):
 	var drag_building = load("res://Scenes/Buildings/" + tower_type + ".tscn").instantiate()
@@ -22,6 +21,7 @@ func set_tower_preview(tower_type, mouse_position):
 	control.set_name("BuildingPreview")
 	add_child(control, true)
 	move_child($BuildingPreview, 0)
+
 
 func update_tower_preview(new_position, color):
 	$BuildingPreview.position = new_position
