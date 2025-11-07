@@ -40,7 +40,7 @@ func initiate_build_mode(tower_type):
 		cancel_build_mode()
 	build_type = tower_type + "_t1"
 	build_mode = true
-	$UI.set_tower_preview(build_type, get_global_mouse_position())
+	$PreviewLayer.set_tower_preview(build_type, get_global_mouse_position())
 
 
 func update_tower_preview():
@@ -50,18 +50,18 @@ func update_tower_preview():
 
 	# get_cell_source_id() gör att vi kan få tag på en cell, om den är tom blir resultatet == -1
 	if BuildingLayer.get_cell_source_id(current_tile) == -1: # Det vi kollar här är ifall det finns någon tile i vårat building lager
-		$UI.update_tower_preview(tile_position, "91ff63ca")
+		$PreviewLayer.update_tower_preview(tile_position, "91ff63ca")
 		build_valid = true
 		build_location = tile_position
 		build_tile = current_tile
 	else: # Något finns på den tilen
-		$UI.update_tower_preview(tile_position, "ff2016a7")
+		$PreviewLayer.update_tower_preview(tile_position, "ff2016a7")
 		build_valid = false
 
 func cancel_build_mode():
 	build_mode = false
 	build_valid = false
-	$UI/BuildingPreview.free()
+	$PreviewLayer/BuildingPreview.free()
 	# spännande fel är tidigare, queue free fungerade ej utan free() behövdes, handlade om att vi refererar till
 	# namnet på noden i UI och då blir det skumt om man entrar build mode från build mode, nya noden hinner skapas innan
 	# den gamla togs bort

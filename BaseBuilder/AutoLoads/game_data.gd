@@ -10,4 +10,9 @@ var tower_data = {
 		"damage": 100,
 		"rate_of_fire": 3,
 		"range": 1000.0},
-}
+	
+	"center_building_t1":{
+		"damage": 0,
+		"rate_of_fire": 0,
+		"range": 0.0},
+	}

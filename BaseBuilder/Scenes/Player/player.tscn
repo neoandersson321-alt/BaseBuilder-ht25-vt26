@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4npm3v55typf"]
+
+[ext_resource type="Script" uid="uid://cbyu2gxmgtv6h" path="res://Scripts/Player/player.gd" id="1_xpcdj"]
+[ext_resource type="Texture2D" uid="uid://b7k6id6l8txt" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/purple_character.png" id="2_mtuoh"]
+[ext_resource type="Texture2D" uid="uid://4lc2c88iy12y" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/purple_hand.png" id="3_htcer"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dd0ac"]
+radius = 39.0512
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_xpcdj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mtuoh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(39, 41)
+texture = ExtResource("3_htcer")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(39, -41)
+texture = ExtResource("3_htcer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dd0ac")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+position_smoothing_enabled = true

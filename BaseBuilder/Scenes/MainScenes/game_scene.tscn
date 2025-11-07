@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://jpel4dfak3mm"]
+[gd_scene load_steps=10 format=3 uid="uid://jpel4dfak3mm"]
 
 [ext_resource type="PackedScene" uid="uid://b3l8pjglwhk1g" path="res://Scenes/grid_map.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dxa5m7dv0fs3j" path="res://Scripts/MainScripts/game_scene.gd" id="1_lohlh"]
 [ext_resource type="Texture2D" uid="uid://t4ay36k6mtvi" path="res://Resources/UI/Buttons/button_round_border.png" id="2_4bvgx"]
 [ext_resource type="Texture2D" uid="uid://djxhp4s0yjp3y" path="res://Resources/Towers/towerDefense_tile249.png" id="3_3mbwn"]
-[ext_resource type="Script" uid="uid://dejioli3i5fyo" path="res://Scripts/UI/ui.gd" id="3_kilg5"]
+[ext_resource type="Script" uid="uid://dejioli3i5fyo" path="res://Scripts/UI/preview_layer.gd" id="3_kilg5"]
 [ext_resource type="Texture2D" uid="uid://4xvu43538p0d" path="res://Resources/Towers/towerDefense_tile251.png" id="4_jwv4s"]
+[ext_resource type="Texture2D" uid="uid://bm1xx24hx6vns" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/campfire.png" id="7_2usgn"]
 [ext_resource type="PackedScene" uid="uid://b0peupka26mca" path="res://Scenes/UI/upgrade_screen.tscn" id="7_ibdpl"]
+[ext_resource type="PackedScene" uid="uid://d4npm3v55typf" path="res://Scenes/Player/player.tscn" id="9_674w2"]
 
 [node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer")]
 script = ExtResource("1_lohlh")
@@ -16,11 +18,7 @@ OutlineLayer = NodePath("GridMap/OutlineLayer")
 
 [node name="GridMap" parent="." instance=ExtResource("1_jjgbg")]
 
-[node name="BuildingLayer" parent="GridMap" index="2"]
-modulate = Color(1, 1, 1, 1)
-
 [node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("3_kilg5")
 
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 3
@@ -45,6 +43,37 @@ offset_right = 500.0
 offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="center_building" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("2_4bvgx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/BuildBar/center_building"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/center_building/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_2usgn")
 
 [node name="gun" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
 custom_minimum_size = Vector2(160, 160)
@@ -98,5 +127,12 @@ texture = ExtResource("4_jwv4s")
 
 [node name="UpgradeScreen" parent="UI" instance=ExtResource("7_ibdpl")]
 visible = false
+mouse_filter = 2
+
+[node name="PreviewLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+script = ExtResource("3_kilg5")
+
+[node name="Player" parent="." instance=ExtResource("9_674w2")]
 
 [editable path="GridMap"]
