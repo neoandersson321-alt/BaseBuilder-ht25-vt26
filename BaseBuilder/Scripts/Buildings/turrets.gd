@@ -14,7 +14,6 @@ func _ready() -> void:
 		upgrade_button.queue_free()
 
 
-
 func _on_upgrade_button_pressed(tower):
 	print(str(tower) + "Has Been Upgraded")
 

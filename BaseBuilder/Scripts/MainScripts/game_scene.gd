@@ -12,6 +12,10 @@ var build_type
 @export var BuildingLayer: TileMapLayer
 @export var OutlineLayer: TileMapLayer
 
+@onready var enemy_spawner = $EnemySpawner
+
+
+
 func _ready() -> void:
 	map_node = $GridMap # ifall vi ska lägga till fler banor/genererade kartor
 	
@@ -20,6 +24,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	
 	if build_mode:
 		update_tower_preview()
 	_outline()
@@ -73,6 +78,9 @@ func verify_and_build():
 		new_tower.position = build_location
 		$GridMap/Buildings.add_child(new_tower, true)
 		$GridMap/BuildingLayer.set_cell(build_tile, 0, Vector2i(0,0))
+		if $GridMap/Buildings/CenterBuilding != null:
+			$EnemySpawner.start(new_tower.position)
+
 
 func _outline():
 	var mouse_position = get_global_mouse_position()

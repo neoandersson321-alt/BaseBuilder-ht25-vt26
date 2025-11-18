@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjr3ol0hwyrty"]
+
+[ext_resource type="Script" uid="uid://bwlrm1yf3ujdn" path="res://Scripts/Enemy/enemy.gd" id="1_2t2r4"]
+[ext_resource type="Texture2D" uid="uid://bl7wau22cwvvy" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/red_character.png" id="1_nvvbs"]
+[ext_resource type="Texture2D" uid="uid://di4biplc6t8f4" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/red_hand.png" id="2_2t2r4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmwl5"]
+radius = 38.0526
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+script = ExtResource("1_2t2r4")
+speed = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nvvbs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(39, 41)
+texture = ExtResource("2_2t2r4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(39, -41)
+texture = ExtResource("2_2t2r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dmwl5")

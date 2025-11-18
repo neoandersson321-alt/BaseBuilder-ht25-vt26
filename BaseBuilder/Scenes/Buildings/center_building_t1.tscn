@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl85inx7u46jk"]
+[gd_scene load_steps=3 format=3 uid="uid://bl85inx7u46jk"]
 
+[ext_resource type="Script" uid="uid://bkqb7jjr785ht" path="res://Scenes/Buildings/center_building_t1.gd" id="1_151t3"]
 [ext_resource type="Texture2D" uid="uid://bm1xx24hx6vns" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/campfire.png" id="1_vc6j2"]
 
 [node name="CenterBuilding" type="Node2D"]
+script = ExtResource("1_151t3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vc6j2")

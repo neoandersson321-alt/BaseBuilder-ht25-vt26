@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jpel4dfak3mm"]
+[gd_scene load_steps=11 format=3 uid="uid://jpel4dfak3mm"]
 
 [ext_resource type="PackedScene" uid="uid://b3l8pjglwhk1g" path="res://Scenes/grid_map.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dxa5m7dv0fs3j" path="res://Scripts/MainScripts/game_scene.gd" id="1_lohlh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bm1xx24hx6vns" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/campfire.png" id="7_2usgn"]
 [ext_resource type="PackedScene" uid="uid://b0peupka26mca" path="res://Scenes/UI/upgrade_screen.tscn" id="7_ibdpl"]
 [ext_resource type="PackedScene" uid="uid://d4npm3v55typf" path="res://Scenes/Player/player.tscn" id="9_674w2"]
+[ext_resource type="PackedScene" uid="uid://b4khtcce7a86q" path="res://Scenes/MainScenes/enemy_spawner.tscn" id="10_a0jnf"]
 
 [node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer")]
 script = ExtResource("1_lohlh")
@@ -134,5 +135,7 @@ follow_viewport_enabled = true
 script = ExtResource("3_kilg5")
 
 [node name="Player" parent="." instance=ExtResource("9_674w2")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("10_a0jnf")]
 
 [editable path="GridMap"]

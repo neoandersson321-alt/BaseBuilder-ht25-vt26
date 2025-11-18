@@ -9,6 +9,7 @@ radius = 39.0512
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_xpcdj")
 
@@ -29,4 +30,3 @@ shape = SubResource("CircleShape2D_dd0ac")
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-position_smoothing_enabled = true
