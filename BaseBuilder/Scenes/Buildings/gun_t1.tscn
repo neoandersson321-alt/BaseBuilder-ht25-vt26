@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm0q6hu2fwkjn"]
+[gd_scene load_steps=6 format=3 uid="uid://dm0q6hu2fwkjn"]
 
 [ext_resource type="Texture2D" uid="uid://bbxu5a3hio4dl" path="res://Resources/Towers/towerDefense_tile181.png" id="1_0cjmx"]
 [ext_resource type="Script" uid="uid://dtc6jprex33xw" path="res://Scripts/Buildings/gun_t1.gd" id="1_d3djr"]
 [ext_resource type="Texture2D" uid="uid://djxhp4s0yjp3y" path="res://Resources/Towers/towerDefense_tile249.png" id="2_d3djr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88kni"]
+size = Vector2(52.5, 51.5)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf21a"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="GunT1" type="Node2D"]
+[node name="GunT1" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_d3djr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -0.25)
+shape = SubResource("RectangleShape2D_88kni")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("1_0cjmx")

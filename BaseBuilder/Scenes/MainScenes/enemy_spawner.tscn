@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4khtcce7a86q"]
+[gd_scene load_steps=4 format=3 uid="uid://b4khtcce7a86q"]
 
 [ext_resource type="Script" uid="uid://c4qltgqaajhka" path="res://Scripts/MainScripts/enemy_spawner.gd" id="1_blbiy"]
+[ext_resource type="Texture2D" uid="uid://bbmbwgb1h7xcu" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/yellow_character.png" id="2_ak5rf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ak5rf"]
+radius = 85.0529
 
 [node name="EnemySpawner" type="Node2D" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_blbiy")
@@ -9,15 +13,64 @@ timer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="TopLeft" type="Marker2D" parent="."]
-position = Vector2(-1000, -600)
+position = Vector2(-1250, -750)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopLeft"]
+z_index = 100
+scale = Vector2(2, 2)
+texture = ExtResource("2_ak5rf")
+
+[node name="Area2D" type="Area2D" parent="TopLeft"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeft/Area2D"]
+shape = SubResource("CircleShape2D_ak5rf")
 
 [node name="TopRight" type="Marker2D" parent="."]
-position = Vector2(1000, -600)
+position = Vector2(1250, -750)
+
+[node name="Sprite2D3" type="Sprite2D" parent="TopRight"]
+z_index = 100
+scale = Vector2(2, 2)
+texture = ExtResource("2_ak5rf")
+
+[node name="Area2D2" type="Area2D" parent="TopRight"]
+position = Vector2(-2000, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopRight/Area2D2"]
+shape = SubResource("CircleShape2D_ak5rf")
 
 [node name="BottomLeft" type="Marker2D" parent="."]
-position = Vector2(-1000, 600)
+position = Vector2(-1250, 750)
+
+[node name="Area2D3" type="Area2D" parent="BottomLeft"]
+position = Vector2(0, -1200)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLeft/Area2D3"]
+shape = SubResource("CircleShape2D_ak5rf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="BottomLeft"]
+z_index = 100
+scale = Vector2(2, 2)
+texture = ExtResource("2_ak5rf")
 
 [node name="BottomRight" type="Marker2D" parent="."]
-position = Vector2(1000, 600)
+position = Vector2(1000, 750)
+
+[node name="Area2D4" type="Area2D" parent="BottomRight"]
+position = Vector2(-2000, -1200)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomRight/Area2D4"]
+shape = SubResource("CircleShape2D_ak5rf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BottomRight"]
+z_index = 100
+scale = Vector2(2, 2)
+texture = ExtResource("2_ak5rf")
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

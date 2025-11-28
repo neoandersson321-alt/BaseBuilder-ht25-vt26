@@ -5,6 +5,7 @@ func set_tower_preview(tower_type, mouse_position):
 	var drag_building = load("res://Scenes/Buildings/" + tower_type + ".tscn").instantiate()
 	drag_building.set_name("DragBuilding")
 	drag_building.modulate = Color("91ff63ca")
+	drag_building.get_child(0).disabled = true
 	
 	var range_texture = Sprite2D.new()
 	range_texture.position = Vector2.ZERO

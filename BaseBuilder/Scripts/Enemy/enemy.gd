@@ -10,12 +10,12 @@ extends CharacterBody2D
 var center_pos
 
 func _ready() -> void:
-	center_pos = enemy_spawner.center_pos
+	center_pos = enemy_spawner.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	movement()
-	print(center_pos)
+
 
 
 func movement():
