@@ -1,49 +1,61 @@
 extends Node2D
 
-
-var enemy_scene = preload("res://Scenes/Enemy/enemy.tscn")
-
-@export var timer: Timer
-
 @onready var top_left =$TopLeft
 @onready var top_right =$TopRight
 @onready var bottom_left =$BottomLeft
 @onready var bottom_right =$BottomRight
-
-@onready var enemies = $Enemies
-
 @onready var spawn_positions = [top_left, top_right, bottom_left, bottom_right]
 var center_pos: Vector2
 
-var current_wave = 0
-var enemies_in_wave = 0
 
-func _ready() -> void:
-	randomize()
 
 func start(building_position: Vector2):
 	center_pos = building_position
 	global_position = building_position
 	start_next_wave()
 
+var waves = [ 
+	[
+		# Våg 1
+		{"type": preload("res://Data/Enemy/enemy_zombie.tres"), "count": 5, "delay": 0.5}
+		]
+	 ]
+var current_wave := 0
+var spawning := false
 
 
-	#### Wave Functions ################
 func start_next_wave():
-	var retrieved_wave_data = retrieve_wave_data()
-	await get_tree().create_timer(0.2).timeout
-	spawn_enemies(retrieved_wave_data)
+	print(current_wave)
+	if current_wave >= waves.size():
+		print("Alla waves klara!")
+		return
 
-func retrieve_wave_data() -> Array:
-	var wave_data = [["enemy", 0.7], ]
+	spawning = true
+	spawn_wave(waves[current_wave])
 	current_wave += 1
-	enemies_in_wave = wave_data.size()
-	return wave_data
 
-func spawn_enemies(wave_data):
-	for index in wave_data:
-		var new_enemy = load("res://Scenes/Enemy/" + str(index[0]) + ".tscn").instantiate()
-		var spawn_num = randi_range(0, 3)
-		new_enemy.position = spawn_positions[spawn_num].position
-		enemies.add_child(new_enemy)
-		await get_tree().create_timer(index[1])
+func spawn_wave(wave_data):
+	# wave_data är en LISTA med subwaves
+	for subwave in wave_data:
+		var enemy_type = subwave["type"]
+		var count = subwave["count"]
+		var delay = subwave["delay"]
+		for i in count:
+			spawn_enemy(enemy_type)
+			await get_tree().create_timer(delay).timeout
+
+	spawning = false
+	await wait_for_all_enemies()
+	start_next_wave()
+
+
+func spawn_enemy(enemy_type):
+	var enemy = enemy_type.scene.instantiate()
+	enemy.type_data = enemy_type  
+	enemy.position = spawn_positions.pick_random().position
+	add_child(enemy)
+
+
+func wait_for_all_enemies():
+	while get_tree().get_nodes_in_group("enemies").size() > 0:
+		await get_tree().create_timer(0.2).timeout

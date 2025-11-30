@@ -1,18 +1,22 @@
 extends CharacterBody2D
+class_name EnemyBase
 
-@export var health:int
-@export var damage:int
-@export var speed:int
-@export var hit_speed:int
 
 @onready var enemy_spawner = get_parent()
 
-var center_pos
+@export var type_data: EnemyStats
+var center_pos: Vector2
+var health: int
+var speed: float
+
 
 func _ready() -> void:
 	center_pos = enemy_spawner.global_position
+	add_to_group("enemies")
+	health = type_data.health
+	speed = type_data.speed
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	movement()
 

@@ -8,8 +8,11 @@ var build_tile
 var build_location
 var build_type
 
+var center_pos: Vector2
+
 var possible_builds = {"center_building_t1": 1, "gun_t1": 4, "missile_t1": 2}
 var buildings = {"center_building_t1": 0, "gun_t1": 0, "missile_t1": 0}
+
 @export var BaseLayer: TileMapLayer
 @export var BuildingLayer: TileMapLayer
 @export var OutlineLayer: TileMapLayer
@@ -81,6 +84,7 @@ func verify_and_build():
 		$GridMap/Buildings.add_child(new_tower, true)
 		$GridMap/BuildingLayer.set_cell(build_tile, 0, Vector2i(0,0))
 		if build_type ==  "center_building_t1":
+			center_pos = new_tower.position
 			var enemy_spawner = enemy_spawner_scene.instantiate()
 			add_child(enemy_spawner)
 			enemy_spawner.start(new_tower.position)

@@ -14,6 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="MissileT1" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_j10f4")
+building_name = "missile_t1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ujg6a")
@@ -39,3 +40,5 @@ offset_top = -26.0
 offset_right = 26.0
 offset_bottom = 26.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ujg6a")
+
+[node name="FireTimer" type="Timer" parent="."]

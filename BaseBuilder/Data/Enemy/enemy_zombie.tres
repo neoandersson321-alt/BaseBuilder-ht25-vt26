@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://02pxa6dygnu3"]
+
+[ext_resource type="Script" uid="uid://dsrrdekfraqlr" path="res://Scripts/Enemy/enemy_stats.gd" id="1_icrx8"]
+[ext_resource type="PackedScene" uid="uid://cjr3ol0hwyrty" path="res://Scenes/Enemy/enemy.tscn" id="1_lw1by"]
+
+[resource]
+script = ExtResource("1_icrx8")
+scene = ExtResource("1_lw1by")
+health = 50
+speed = 75.0
+drops = 10
+metadata/_custom_type_script = "uid://dsrrdekfraqlr"

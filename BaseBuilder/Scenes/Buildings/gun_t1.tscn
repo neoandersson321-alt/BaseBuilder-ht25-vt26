@@ -13,6 +13,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="GunT1" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_d3djr")
+building_name = "gun_t1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, -0.25)
@@ -44,3 +45,5 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tf21a")
+
+[node name="FireTimer" type="Timer" parent="."]

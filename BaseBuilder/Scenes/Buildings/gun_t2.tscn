@@ -13,6 +13,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="GunT2" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_pchh8")
+building_name = "gun_t2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3q1aw")
@@ -36,3 +37,5 @@ offset_top = -26.0
 offset_right = 26.0
 offset_bottom = 26.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_3q1aw")
+
+[node name="FireTimer" type="Timer" parent="."]
