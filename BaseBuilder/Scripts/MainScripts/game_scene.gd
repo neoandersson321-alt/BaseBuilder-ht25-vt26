@@ -17,8 +17,8 @@ var buildings = {"center_building_t1": 0, "gun_t1": 0, "missile_t1": 0}
 @export var BuildingLayer: TileMapLayer
 @export var OutlineLayer: TileMapLayer
 @onready var enemy_spawner_scene = preload("res://Scenes/MainScenes/enemy_spawner.tscn")
-
 @onready var ui = $UI
+
 func _ready() -> void:
 	map_node = $GridMap # ifall vi ska lägga till fler banor/genererade kartor
 	
@@ -48,7 +48,6 @@ func initiate_build_mode(tower_type):
 	build_mode = true
 	build_type = tower_type + "_t1"
 	$PreviewLayer.set_tower_preview(build_type, get_global_mouse_position())
-
 
 func update_tower_preview():
 	var mouse_position = get_local_mouse_position()
@@ -87,6 +86,7 @@ func verify_and_build():
 			center_pos = new_tower.position
 			var enemy_spawner = enemy_spawner_scene.instantiate()
 			add_child(enemy_spawner)
+			ui._connect_to_spawner(enemy_spawner)
 			enemy_spawner.start(new_tower.position)
 
 #####################################

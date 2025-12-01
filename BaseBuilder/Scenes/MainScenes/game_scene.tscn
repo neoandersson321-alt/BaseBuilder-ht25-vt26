@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jpel4dfak3mm"]
+[gd_scene load_steps=15 format=3 uid="uid://jpel4dfak3mm"]
 
 [ext_resource type="PackedScene" uid="uid://b3l8pjglwhk1g" path="res://Scenes/grid_map.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dxa5m7dv0fs3j" path="res://Scripts/MainScripts/game_scene.gd" id="1_lohlh"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c8hmcvc2wpbiq" path="res://Resources/UI/kenney_game-icons/PNG/Black/2x/pause.png" id="8_0h1f8"]
 [ext_resource type="PackedScene" uid="uid://d4npm3v55typf" path="res://Scenes/Player/player.tscn" id="9_674w2"]
 [ext_resource type="Texture2D" uid="uid://c6d2rn838qjlb" path="res://Resources/UI/kenney_game-icons/PNG/Black/2x/fastForward.png" id="9_sl8sw"]
+[ext_resource type="FontFile" uid="uid://bv5wv5mjystu2" path="res://Resources/Fonts/Kenney Future Narrow.ttf" id="11_sl8sw"]
 
 [node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer")]
 script = ExtResource("1_lohlh")
@@ -166,6 +167,25 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 texture_normal = ExtResource("9_sl8sw")
 stretch_mode = 0
+
+[node name="WaveLabel" type="Label" parent="UI/HUD"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.792
+anchor_right = 1.0
+anchor_bottom = 0.093
+offset_left = -100.64
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = 99.56
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_sl8sw")
+theme_override_font_sizes/font_size = 64
+text = "Time Until Next Wave:"
 
 [node name="UpgradeScreen" parent="UI" instance=ExtResource("7_ibdpl")]
 visible = false

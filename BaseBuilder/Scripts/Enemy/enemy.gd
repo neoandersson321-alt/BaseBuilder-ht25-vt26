@@ -6,15 +6,14 @@ class_name EnemyBase
 
 @export var type_data: EnemyStats
 var center_pos: Vector2
-var health: int
-var speed: float
+var health := 75
+var speed := 100
 
 
 func _ready() -> void:
 	center_pos = enemy_spawner.global_position
 	add_to_group("enemies")
-	health = type_data.health
-	speed = type_data.speed
+
 
 
 func _process(delta: float) -> void:
