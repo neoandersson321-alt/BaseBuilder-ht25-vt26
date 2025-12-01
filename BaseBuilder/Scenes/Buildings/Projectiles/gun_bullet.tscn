@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8bcsnto1xq3n"]
+
+[ext_resource type="Script" uid="uid://dp5e7w5jmrwhx" path="res://Scripts/Buildings/Projectiles/gun_bullet.gd" id="1_20uwy"]
+[ext_resource type="Texture2D" uid="uid://bbxu5a3hio4dl" path="res://Resources/Towers/towerDefense_tile181.png" id="2_nro68"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_21uai"]
+radius = 27.0185
+
+[node name="GunBullet" type="Area2D"]
+texture_filter = 2
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_20uwy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_21uai")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nro68")

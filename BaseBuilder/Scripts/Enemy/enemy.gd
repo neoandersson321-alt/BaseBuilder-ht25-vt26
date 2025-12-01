@@ -21,6 +21,15 @@ func _process(delta: float) -> void:
 	movement()
 
 
+func _take_damage(amount):
+	health -= amount
+	if health <= 0:
+		_die()
+
+
+func _die():
+	queue_free()
+
 
 func movement():
 	var dir_to_center = self.global_position.direction_to(center_pos)

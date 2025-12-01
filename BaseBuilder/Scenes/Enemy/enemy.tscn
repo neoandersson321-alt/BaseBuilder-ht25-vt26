@@ -1,17 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjr3ol0hwyrty"]
+[gd_scene load_steps=6 format=3 uid="uid://cjr3ol0hwyrty"]
 
 [ext_resource type="Script" uid="uid://bwlrm1yf3ujdn" path="res://Scripts/Enemy/enemy.gd" id="1_2t2r4"]
 [ext_resource type="Texture2D" uid="uid://bl7wau22cwvvy" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/red_character.png" id="1_nvvbs"]
 [ext_resource type="Texture2D" uid="uid://di4biplc6t8f4" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/red_hand.png" id="2_2t2r4"]
-[ext_resource type="Script" uid="uid://dsrrdekfraqlr" path="res://Scripts/Enemy/enemy_stats.gd" id="2_dmwl5"]
-
-[sub_resource type="Resource" id="Resource_d40jh"]
-script = ExtResource("2_dmwl5")
-scene = null
-health = 100
-speed = 100.0
-drops = 10
-metadata/_custom_type_script = "uid://dsrrdekfraqlr"
+[ext_resource type="Resource" uid="uid://02pxa6dygnu3" path="res://Data/Enemy/enemy_zombie.tres" id="2_dmwl5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmwl5"]
 radius = 38.0526
@@ -20,7 +12,7 @@ radius = 38.0526
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 script = ExtResource("1_2t2r4")
-type_data = SubResource("Resource_d40jh")
+type_data = ExtResource("2_dmwl5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nvvbs")

@@ -5,7 +5,9 @@ extends Node2D
 @onready var game_scene: Node2D = get_parent().get_parent().get_parent()
 @onready var fire_timer: Timer= $FireTimer
 
+@export var projectile_scene: PackedScene
 @export var building_name:String
+
 
 var range: float
 var rof: float
@@ -16,6 +18,7 @@ var target: Node2D = null
 signal upgrade_button_pressed
 
 func _ready() -> void:
+	fire_timer.connect("timeout", Callable(self, "_on_fire_timer_timeout"))
 	if name != "DragBuilding":
 		upgrade_button.pressed.connect(_on_upgrade_button_pressed.bind(self))
 	else:
@@ -37,28 +40,46 @@ func _on_upgrade_button_pressed(tower):
 
 func _physics_process(delta: float) -> void:
 	_find_target()
-	_turn()
+	_turn(delta)
 
 
 func _find_target():
 # Hitta fiender i din grupp
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	var closest = null
-	var closest_dist = range
+	var closest_target = null
+	var closest_dist_center = range
 
-	for e in enemies:
-		if not e.is_inside_tree():
+	for enemy in enemies:
+		if not enemy.is_inside_tree():
 			continue
-		var d = center_pos.distance_to(e.global_position)
-		if d < closest_dist:
-			closest_dist = d
-			closest = e
+		
+		if global_position.distance_to(enemy.global_position) > range:
+			continue
+		
+		var dist_to_center = center_pos.distance_to(enemy.global_position)
+		
+		if dist_to_center < closest_dist_center:
+			closest_dist_center = dist_to_center
+			closest_target = enemy
 
-	target = closest
+	target = closest_target
 
-func _turn():
+
+func _on_fire_timer_timeout():
 	if target == null:
 		return
-	var target_pos = target.global_position
-	print(target_pos)
-	look_at(target_pos)
+	if global_position.distance_to(target.global_position) > range:
+		return
+	
+	_shoot()
+
+func _shoot():
+	var bullet = projectile_scene.instantiate()
+	$Bullets.add_child(bullet)
+	bullet.global_position = global_position
+	bullet.target = target
+
+func _turn(delta):
+	if target == null:
+		return
+	rotation = lerp_angle(rotation,(target.global_position - global_position).angle(), 20 * delta)

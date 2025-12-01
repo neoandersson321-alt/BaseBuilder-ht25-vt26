@@ -17,7 +17,7 @@ func start(building_position: Vector2):
 var waves = [ 
 	[
 		# Våg 1
-		{"type": preload("res://Data/Enemy/enemy_zombie.tres"), "count": 5, "delay": 0.5}
+		{"type": preload("res://Data/Enemy/enemy_zombie.tres"), "count": 100, "delay": 0.2}
 		]
 	 ]
 var current_wave := 0

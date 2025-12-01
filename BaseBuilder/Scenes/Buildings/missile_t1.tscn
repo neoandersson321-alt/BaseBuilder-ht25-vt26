@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1o7iy3dgp2pp"]
+[gd_scene load_steps=8 format=3 uid="uid://d1o7iy3dgp2pp"]
 
 [ext_resource type="Script" uid="uid://bxy7phl7bbeq7" path="res://Scripts/Buildings/missile_t1.gd" id="1_j10f4"]
 [ext_resource type="Texture2D" uid="uid://d2kdrkiel68sd" path="res://Resources/Towers/towerDefense_tile180.png" id="1_qu2v4"]
 [ext_resource type="Texture2D" uid="uid://bhyl3yhmvypm3" path="res://Resources/Towers/towerDefense_tile228.png" id="2_j10f4"]
+[ext_resource type="PackedScene" uid="uid://di3btlnn7ed1r" path="res://Scenes/Buildings/Projectiles/missile.tscn" id="2_un0vm"]
 [ext_resource type="Texture2D" uid="uid://4xvu43538p0d" path="res://Resources/Towers/towerDefense_tile251.png" id="3_5xlxi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujg6a"]
@@ -14,6 +15,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="MissileT1" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_j10f4")
+projectile_scene = ExtResource("2_un0vm")
 building_name = "missile_t1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -42,3 +44,5 @@ offset_bottom = 26.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ujg6a")
 
 [node name="FireTimer" type="Timer" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]

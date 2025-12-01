@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm0q6hu2fwkjn"]
+[gd_scene load_steps=7 format=3 uid="uid://dm0q6hu2fwkjn"]
 
 [ext_resource type="Texture2D" uid="uid://bbxu5a3hio4dl" path="res://Resources/Towers/towerDefense_tile181.png" id="1_0cjmx"]
 [ext_resource type="Script" uid="uid://dtc6jprex33xw" path="res://Scripts/Buildings/gun_t1.gd" id="1_d3djr"]
 [ext_resource type="Texture2D" uid="uid://djxhp4s0yjp3y" path="res://Resources/Towers/towerDefense_tile249.png" id="2_d3djr"]
+[ext_resource type="PackedScene" uid="uid://c8bcsnto1xq3n" path="res://Scenes/Buildings/Projectiles/gun_bullet.tscn" id="2_tf21a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88kni"]
 size = Vector2(52.5, 51.5)
@@ -13,6 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="GunT1" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_d3djr")
+projectile_scene = ExtResource("2_tf21a")
 building_name = "gun_t1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -47,3 +49,5 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tf21a")
 
 [node name="FireTimer" type="Timer" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]
