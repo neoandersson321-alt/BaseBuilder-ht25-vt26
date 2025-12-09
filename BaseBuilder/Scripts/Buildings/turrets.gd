@@ -75,18 +75,21 @@ func _on_fire_timer_timeout():
 	if global_position.distance_to(target.global_position) > range:
 		return
 	
+	await get_angle_to(target.global_position) < PI/8
 	_shoot()
 	# Efter att ha skjutit, lås siktet för en kort stund
 	aim_lock_time = aim_lock_duration
 
 func _shoot():
 	var bullet = projectile_scene.instantiate()
-	$Bullets.add_child(bullet)
+	bullet.tower_name = building_name
 	bullet.global_position = global_position
+	bullet.target_pos = target.global_position
 	bullet.target = target
+	game_scene.get_node("Bullets").add_child(bullet)
 
 func _turn(delta):
 	if target == null:
 		return
 	# Använd en lägre interpolation för mjukare rotation
-	rotation = lerp_angle(rotation, (target.global_position - global_position).angle(), 0.08)
+	rotation = lerp_angle(rotation, (target.global_position - global_position).angle(), 0.18)

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b3l8pjglwhk1g" path="res://Scenes/grid_map.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dxa5m7dv0fs3j" path="res://Scripts/MainScripts/game_scene.gd" id="1_lohlh"]
 [ext_resource type="Texture2D" uid="uid://t4ay36k6mtvi" path="res://Resources/UI/Buttons/button_round_border.png" id="2_4bvgx"]
-[ext_resource type="Script" uid="uid://d32a82m516b7w" path="res://Scenes/UI/ui.gd" id="3_0h1f8"]
+[ext_resource type="Script" uid="uid://d32a82m516b7w" path="res://Scripts/UI/ui.gd" id="3_0h1f8"]
 [ext_resource type="Texture2D" uid="uid://djxhp4s0yjp3y" path="res://Resources/Towers/towerDefense_tile249.png" id="3_3mbwn"]
 [ext_resource type="Script" uid="uid://dejioli3i5fyo" path="res://Scripts/UI/preview_layer.gd" id="3_kilg5"]
 [ext_resource type="Texture2D" uid="uid://4xvu43538p0d" path="res://Resources/Towers/towerDefense_tile251.png" id="4_jwv4s"]
@@ -168,6 +168,30 @@ size_flags_vertical = 8
 texture_normal = ExtResource("9_sl8sw")
 stretch_mode = 0
 
+[node name="PlayerInfo" type="VBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/PlayerInfo"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="StoneLabel" type="Label" parent="UI/HUD/PlayerInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="WoodLabel" type="Label" parent="UI/HUD/PlayerInfo/HBoxContainer"]
+layout_mode = 2
+text = "WOOD:"
+
 [node name="WaveLabel" type="Label" parent="UI/HUD"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 1
@@ -196,6 +220,8 @@ follow_viewport_enabled = true
 script = ExtResource("3_kilg5")
 
 [node name="Player" parent="." instance=ExtResource("9_674w2")]
+
+[node name="Bullets" type="Node2D" parent="."]
 
 [connection signal="pressed" from="UI/HUD/MarginContainer/GameControls/PausePlay" to="UI" method="_on_pause_play_pressed"]
 [connection signal="button_down" from="UI/HUD/MarginContainer/GameControls/2xSpeed" to="UI" method="_on_x_speed_button_down"]

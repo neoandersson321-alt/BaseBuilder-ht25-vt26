@@ -3,7 +3,10 @@ extends CanvasLayer
 @onready var game_scene = get_parent()
 @onready var wave_label = $HUD/WaveLabel
 
+var inventory
+
 func _ready() -> void:
+	inventory = game_scene.inventory
 	wave_label.visible = false
 
 
@@ -52,3 +55,6 @@ func _on_wave_starting(wave_num):
 func _on_all_waves_done():
 	wave_label.visible = true
 	wave_label.text = "All waves completed!"
+
+func update_inventory():
+	inventory = game_scene.inventory

@@ -36,6 +36,7 @@ mouse_cursor/custom_image="uid://br51vbdewmjan"
 
 build_buttons=""
 enemies=""
+player=""
 
 [input]
 
