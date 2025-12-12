@@ -30,3 +30,8 @@ shape = SubResource("CircleShape2D_dd0ac")
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="WeaponPos" type="Marker2D" parent="."]
+position = Vector2(60, 0)

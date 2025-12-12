@@ -1,7 +1,15 @@
 extends CanvasLayer
 
 @onready var game_scene = get_parent()
-@onready var wave_label = $HUD/WaveLabel
+
+@export var wave_label: Label
+@export var stone_label: Label
+@export var wood_label: Label
+
+@onready var inventory_to_label = {
+	"stone": stone_label, 
+	"wood": wood_label,
+}
 
 var inventory
 
@@ -58,3 +66,6 @@ func _on_all_waves_done():
 
 func update_inventory():
 	inventory = game_scene.inventory
+	
+	for item in inventory:
+		inventory_to_label[item].text = str(item) + ": " + str(inventory[item])

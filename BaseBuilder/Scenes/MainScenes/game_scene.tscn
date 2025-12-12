@@ -23,8 +23,11 @@ OutlineLayer = NodePath("GridMap/OutlineLayer")
 
 [node name="GridMap" parent="." instance=ExtResource("1_jjgbg")]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_label", "stone_label", "wood_label")]
 script = ExtResource("3_0h1f8")
+wave_label = NodePath("HUD/WaveLabel")
+stone_label = NodePath("HUD/PlayerInfo/MarginContainer/HBoxContainer/StoneLabel")
+wood_label = NodePath("HUD/PlayerInfo/MarginContainer/HBoxContainer/WoodLabel")
 
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 3
@@ -180,17 +183,34 @@ offset_top = -200.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/PlayerInfo"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/PlayerInfo"]
+layout_mode = 2
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/HUD/PlayerInfo/MarginContainer"]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 50
 
-[node name="StoneLabel" type="Label" parent="UI/HUD/PlayerInfo/HBoxContainer"]
+[node name="StoneLabel" type="Label" parent="UI/HUD/PlayerInfo/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_font_sizes/font_size = 64
+text = "stone: 0"
 
-[node name="WoodLabel" type="Label" parent="UI/HUD/PlayerInfo/HBoxContainer"]
+[node name="WoodLabel" type="Label" parent="UI/HUD/PlayerInfo/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "WOOD:"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_font_sizes/font_size = 64
+text = "wood: 0"
 
 [node name="WaveLabel" type="Label" parent="UI/HUD"]
 custom_minimum_size = Vector2(400, 100)

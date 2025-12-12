@@ -23,6 +23,7 @@ var inventory = {
 @onready var ui = $UI
 
 func _ready() -> void:
+	ui.update_inventory()
 	map_node = $GridMap # ifall vi ska lägga till fler banor/genererade kartor
 	
 	for i in get_tree().get_nodes_in_group("build_buttons"): # skapar en array med noderna i "build_buttons"
