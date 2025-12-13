@@ -13,14 +13,14 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_xpcdj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("2_mtuoh")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="RightHand" type="Sprite2D" parent="."]
 position = Vector2(39, 41)
 texture = ExtResource("3_htcer")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="LeftHand" type="Sprite2D" parent="."]
 position = Vector2(39, -41)
 texture = ExtResource("3_htcer")
 
@@ -34,4 +34,9 @@ limit_top = 0
 [node name="Weapon" type="Node2D" parent="."]
 
 [node name="WeaponPos" type="Marker2D" parent="."]
-position = Vector2(60, 0)
+position = Vector2(65, 50)
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

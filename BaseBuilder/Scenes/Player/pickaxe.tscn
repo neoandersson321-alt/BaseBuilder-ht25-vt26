@@ -9,7 +9,9 @@ height = 110.0
 
 [node name="Pickaxe" type="Area2D"]
 scale = Vector2(1.5, 1.5)
+collision_layer = 34
 script = ExtResource("1_n2jix")
+weapon_damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
