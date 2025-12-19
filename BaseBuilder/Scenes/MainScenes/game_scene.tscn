@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://jpel4dfak3mm"]
+[gd_scene load_steps=16 format=3 uid="uid://jpel4dfak3mm"]
 
 [ext_resource type="PackedScene" uid="uid://b3l8pjglwhk1g" path="res://Scenes/grid_map.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dxa5m7dv0fs3j" path="res://Scripts/MainScripts/game_scene.gd" id="1_lohlh"]
@@ -14,8 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://d4npm3v55typf" path="res://Scenes/Player/player.tscn" id="9_674w2"]
 [ext_resource type="Texture2D" uid="uid://c6d2rn838qjlb" path="res://Resources/UI/kenney_game-icons/PNG/Black/2x/fastForward.png" id="9_sl8sw"]
 [ext_resource type="FontFile" uid="uid://bv5wv5mjystu2" path="res://Resources/Fonts/Kenney Future Narrow.ttf" id="11_sl8sw"]
+[ext_resource type="PackedScene" uid="uid://bncrbk1yn7td4" path="res://Scenes/Mineables/tree.tscn" id="15_jvyjn"]
 
-[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer")]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer") groups=["game_scene"]]
 script = ExtResource("1_lohlh")
 BaseLayer = NodePath("GridMap/BaseLayer")
 BuildingLayer = NodePath("GridMap/BuildingLayer")
@@ -242,6 +243,11 @@ script = ExtResource("3_kilg5")
 [node name="Player" parent="." instance=ExtResource("9_674w2")]
 
 [node name="Bullets" type="Node2D" parent="."]
+
+[node name="Tree" parent="." instance=ExtResource("15_jvyjn")]
+position = Vector2(726, 381)
+collision_layer = 1
+collision_mask = 1
 
 [connection signal="pressed" from="UI/HUD/MarginContainer/GameControls/PausePlay" to="UI" method="_on_pause_play_pressed"]
 [connection signal="button_down" from="UI/HUD/MarginContainer/GameControls/2xSpeed" to="UI" method="_on_x_speed_button_down"]

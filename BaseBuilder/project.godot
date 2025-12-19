@@ -37,6 +37,9 @@ mouse_cursor/custom_image="uid://br51vbdewmjan"
 build_buttons=""
 enemies=""
 player=""
+mineables=""
+game_scene=""
+tools=""
 
 [input]
 
@@ -86,6 +89,7 @@ Down={
 2d_physics/layer_1="Buildings"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Mineable"
 
 [rendering]
 

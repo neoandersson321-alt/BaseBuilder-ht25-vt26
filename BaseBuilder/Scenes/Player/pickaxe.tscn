@@ -3,20 +3,21 @@
 [ext_resource type="Script" uid="uid://kt8gnewq7edv" path="res://Scripts/Player/pickaxe.gd" id="1_n2jix"]
 [ext_resource type="Texture2D" uid="uid://bbaobjc8dxliv" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Items/weapon_hammer.png" id="2_mcqkr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fe8s5"]
-radius = 30.0
-height = 110.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcqkr"]
+size = Vector2(71.3332, 48.0003)
 
-[node name="Pickaxe" type="Area2D"]
+[node name="Pickaxe" type="Area2D" groups=["tools"]]
 scale = Vector2(1.5, 1.5)
-collision_layer = 34
+collision_layer = 2
+collision_mask = 12
 script = ExtResource("1_n2jix")
 weapon_damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34.6667, 0.33333)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_fe8s5")
+shape = SubResource("RectangleShape2D_mcqkr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("2_mcqkr")

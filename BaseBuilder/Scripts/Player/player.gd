@@ -17,6 +17,14 @@ var weapon_scenes = {
 @onready var weapon_slot = $Weapon
 @onready var attack_timer = $AttackTimer
 
+func _ready() -> void:
+	for tool in get_tree().get_nodes_in_group("tools"):
+		tool.mineable_hit.connect(_on_mineable_hit)
+
+
+func _on_mineable_hit(mineable: Mineable):
+	mineable.gain_resource()
+
 func _get_move_input():
 	input.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	input.y = Input.get_action_strength("Down") - Input.get_action_strength("Up")
@@ -70,7 +78,6 @@ func check_for_attack(dir):
 	var angle = old_dir.angle_to(dir)
 	if angle <= -MIN_ATTACK_ANGLE and -MAX_ATTACK_ANGLE <= angle:
 		attack_init()
-
 
 func _on_attack_timer_timeout() -> void:
 	can_attack = true

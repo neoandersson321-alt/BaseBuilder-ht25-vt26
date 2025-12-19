@@ -100,7 +100,8 @@ func verify_and_build():
 
 
 ###### INVENTORY FUNKCTIONS ########
-func gain_resource(type:String, amount):
+func _gain_resource(type:String, amount):
+	print(type + ": " + amount)
 	inventory[type] += amount
 	ui.update_inventory()
 
@@ -110,6 +111,8 @@ func spend_resource():
 	for resource in cost:
 		inventory[resource] -= cost[resource]
 	ui.update_inventory()
+
+
 func enough_resources():
 	var cost = GameData.return_tower_cost(build_type)
 	for resource in cost:
@@ -117,14 +120,18 @@ func enough_resources():
 			return false
 	return true
 
+
 ###### BUILDING CHECK ##############
 
 func check_building_validity():
 	for building in possible_builds:
 		if possible_builds[building] <= buildings[building]:
 			ui.disable_button(building)
-#####################################
 
+
+########## Signals #################
+func register_single_mineable(mineable: Mineable):
+	mineable.add_resource.connect(_gain_resource)
 
 ############
 func _outline():

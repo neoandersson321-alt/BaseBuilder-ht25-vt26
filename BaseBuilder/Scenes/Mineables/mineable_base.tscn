@@ -1,16 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cspuwd2q0rfil"]
+[gd_scene load_steps=2 format=3 uid="uid://cspuwd2q0rfil"]
 
 [ext_resource type="Script" uid="uid://chde6edjg11pa" path="res://Scripts/Mineables/mineabel_base.gd" id="1_1x78e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fdtyn"]
-radius = 128.0
-
 [node name="MineabelBase" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_1x78e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_fdtyn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
