@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://05av6uaoj4jw"]
+
+[ext_resource type="PackedScene" uid="uid://cspuwd2q0rfil" path="res://Scenes/Mineables/mineable_base.tscn" id="1_i63e0"]
+[ext_resource type="Texture2D" uid="uid://bff0k8bp1pr7f" path="res://Resources/Tiles/Stone.png" id="2_2ifkv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ifkv"]
+radius = 94.0441
+height = 208.139
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbreq"]
+radius = 94.0441
+height = 208.139
+
+[node name="Stone" instance=ExtResource("1_i63e0")]
+scale = Vector2(0.5, 0.5)
+mine_amount = 1
+resource_type = "stone"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2ifkv")
+
+[node name="MineableShape" parent="." index="1"]
+position = Vector2(6, -4)
+rotation = 1.55778
+shape = SubResource("CapsuleShape2D_2ifkv")
+
+[node name="DetectShape" parent="DetectArea" index="0"]
+shape = SubResource("CapsuleShape2D_sbreq")

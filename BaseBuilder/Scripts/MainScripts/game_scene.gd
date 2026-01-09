@@ -101,7 +101,7 @@ func verify_and_build():
 
 ###### INVENTORY FUNKCTIONS ########
 func _gain_resource(type:String, amount):
-	print(type + ": " + amount)
+	print(type + ": " + str(amount))
 	inventory[type] += amount
 	ui.update_inventory()
 

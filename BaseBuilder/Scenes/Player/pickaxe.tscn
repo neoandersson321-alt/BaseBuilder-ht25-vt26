@@ -8,8 +8,8 @@ size = Vector2(71.3332, 48.0003)
 
 [node name="Pickaxe" type="Area2D" groups=["tools"]]
 scale = Vector2(1.5, 1.5)
-collision_layer = 2
-collision_mask = 12
+collision_layer = 16
+collision_mask = 4
 script = ExtResource("1_n2jix")
 weapon_damage = 20
 
