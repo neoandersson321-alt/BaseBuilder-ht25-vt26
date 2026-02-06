@@ -40,6 +40,8 @@ player=""
 mineables=""
 game_scene=""
 tools=""
+hurbox="grupp med alla hurtbox, för att hitbox ska känna av dem"
+towers="en grupp för alla torn"
 
 [input]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjr3ol0hwyrty"]
+[gd_scene load_steps=6 format=3 uid="uid://cjr3ol0hwyrty"]
 
 [ext_resource type="Script" uid="uid://bwlrm1yf3ujdn" path="res://Scripts/Enemy/enemy.gd" id="1_2t2r4"]
 [ext_resource type="Texture2D" uid="uid://bl7wau22cwvvy" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/red_character.png" id="1_nvvbs"]
@@ -7,10 +7,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmwl5"]
 radius = 38.0526
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2t2r4"]
+radius = 44.0
+height = 104.0
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 script = ExtResource("1_2t2r4")
+tower_damage = 10.0
+player_damage = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nvvbs")
@@ -25,3 +31,12 @@ texture = ExtResource("2_2t2r4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dmwl5")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(6, 0)
+rotation = -1.57834
+shape = SubResource("CapsuleShape2D_2t2r4")

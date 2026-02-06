@@ -5,28 +5,53 @@ class_name EnemyBase
 @onready var enemy_spawner = get_parent()
 
 @export var type_data: EnemyStats
-var center_pos: Vector2
-var health := 75
-var speed := 100
+@onready var attack_area: Area2D = $AttackArea
 
+var colliding_towers = []
+var colliding_players = []
+
+var center_pos: Vector2
+@export var health := 75
+var speed := 100
+@export var tower_damage: float
+@export var player_damage: float
+
+var time = 0.0
+var attack_time = 1.0
+
+signal enemy_died
 
 func _ready() -> void:
 	center_pos = enemy_spawner.global_position
 	add_to_group("enemies")
-
-
+	attack_area.body_entered.connect(_body_entered)
+	attack_area.body_exited.connect(_body_exited)
 
 func _process(delta: float) -> void:
 	movement()
+	attack_timer(delta)
 
+func attack_timer(delta: float):
+	time += delta
+	if time >= attack_time:
+		time = 0
+		attack()
 
-func _take_damage(amount):
+func attack():
+	for tower in colliding_towers:
+		tower.take_damage(tower_damage)
+	for player in colliding_players:
+		player.take_damage(player_damage)
+
+func take_damage(amount):
 	health -= amount
+	print(amount)
 	if health <= 0:
 		_die()
 
 
 func _die():
+	emit_signal("enemy_died")
 	queue_free()
 
 
@@ -35,3 +60,15 @@ func movement():
 	look_at(center_pos)
 	velocity = dir_to_center * speed
 	move_and_slide()
+
+func _body_entered(body: Node2D):
+	if body.is_in_group("towers"):
+		colliding_towers.append(body)
+	elif body.is_in_group("player"):
+		colliding_players.append(body)
+
+func _body_exited(body: Node2D):
+	if body.is_in_group("towers"):
+		colliding_towers.erase(body)
+	elif body.is_in_group("player"):
+		colliding_players.erase(body)

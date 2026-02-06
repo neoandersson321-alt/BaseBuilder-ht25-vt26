@@ -340,6 +340,3 @@ position = Vector2(1764, 604)
 
 [node name="Stone" parent="Mineables" instance=ExtResource("6_eaelq")]
 position = Vector2(1136, 462)
-
-[connection signal="body_entered" from="Mineables/Tree" to="Mineables/Tree" method="_on_body_entered"]
-[connection signal="body_entered" from="Mineables/Stone" to="Mineables/Stone" method="_on_body_entered"]

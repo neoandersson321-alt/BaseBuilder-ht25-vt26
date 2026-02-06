@@ -1,10 +1,11 @@
 extends Area2D
 
 var tower_name: String
-var speed: int
 var damage: int
 var target: Node2D
 var dir: Vector2
+
+var speed: int
 
 var turn_speed: float = 0.5
 var target_pos: Vector2
@@ -12,7 +13,6 @@ var target_pos: Vector2
 func _ready() -> void:
 	var data = GameData.tower_data[tower_name]
 	speed = data["bullet_speed"]
-	damage = data["damage"]
 
 	var notifier = VisibleOnScreenNotifier2D.new()
 	add_child(notifier)
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body):
 	if body.is_in_group("enemies"):
-		body._take_damage(damage)
+		body.take_damage(damage)
 		queue_free()
 
 

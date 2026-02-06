@@ -9,11 +9,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujg6a"]
 size = Vector2(52, 52)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujg6a"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un0vm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="MissileT1" type="StaticBody2D"]
+[node name="MissileT1" type="StaticBody2D" groups=["towers"]]
 scale = Vector2(2, 2)
+collision_mask = 0
 script = ExtResource("1_j10f4")
 projectile_scene = ExtResource("2_un0vm")
 building_name = "missile_t1"
@@ -36,13 +37,23 @@ texture = ExtResource("3_5xlxi")
 position = Vector2(5, 10)
 texture = ExtResource("3_5xlxi")
 
+[node name="FireTimer" type="Timer" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]
+
 [node name="UpgradeButton" type="Button" parent="."]
 offset_left = -26.0
 offset_top = -26.0
 offset_right = 26.0
 offset_bottom = 26.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_ujg6a")
-
-[node name="FireTimer" type="Timer" parent="."]
-
-[node name="Bullets" type="Node2D" parent="."]
+theme_override_styles/focus = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_un0vm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_un0vm")

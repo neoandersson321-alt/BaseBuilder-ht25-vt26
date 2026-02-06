@@ -10,7 +10,7 @@ radius = 57.2189
 radius = 57.2189
 
 [node name="Tree" instance=ExtResource("1_jroks")]
-mine_amount = 1
+mine_amount = 50
 resource_type = "wood"
 
 [node name="Sprite2D" parent="." index="0"]

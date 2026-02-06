@@ -13,17 +13,6 @@ collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_xpcdj")
 
-[node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2_mtuoh")
-
-[node name="RightHand" type="Sprite2D" parent="."]
-position = Vector2(39, 41)
-texture = ExtResource("3_htcer")
-
-[node name="LeftHand" type="Sprite2D" parent="."]
-position = Vector2(39, -41)
-texture = ExtResource("3_htcer")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dd0ac")
 
@@ -38,5 +27,18 @@ position = Vector2(65, 50)
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="LeftHand" type="Sprite2D" parent="Body"]
+position = Vector2(39, -41)
+texture = ExtResource("3_htcer")
+
+[node name="Body" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_mtuoh")
+
+[node name="RightHand" type="Sprite2D" parent="Body"]
+position = Vector2(39, 41)
+texture = ExtResource("3_htcer")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

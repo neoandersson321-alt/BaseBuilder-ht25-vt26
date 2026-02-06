@@ -5,11 +5,11 @@ const ACC = 7.0
 
 var input: Vector2
 var can_attack: bool  =true
-
+var health: float = 50
 var direction_history = []
 const HISTORY_LENGHT = 7
 const MIN_ATTACK_ANGLE = PI/2
-const MAX_ATTACK_ANGLE = 4*PI/5
+const MAX_ATTACK_ANGLE = PI
 var weapon_scenes = {
 	"1": preload("res://Scenes/Player/pickaxe.tscn")
 }
@@ -73,3 +73,12 @@ func check_for_attack(dir):
 
 func _on_attack_timer_timeout() -> void:
 	can_attack = true
+
+func take_damage(damage):
+	health -= damage
+	print(health)
+	if health <= 0:
+		die()
+
+func die():
+	print("döööööööööd")
