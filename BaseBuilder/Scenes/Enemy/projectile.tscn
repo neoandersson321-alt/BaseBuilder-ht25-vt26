@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct3gnp2oxlyic"]
+
+[ext_resource type="Script" uid="uid://batk38ddkes8y" path="res://Scripts/Enemy/projectile.gd" id="1_4kpl1"]
+[ext_resource type="Texture2D" uid="uid://bwsphalie58qv" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Items/weapon_arrow.png" id="1_g8cft"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4kpl1"]
+radius = 29.0
+height = 104.0
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_4kpl1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4kpl1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g8cft")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

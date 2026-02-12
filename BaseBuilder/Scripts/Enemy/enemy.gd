@@ -11,14 +11,16 @@ var colliding_towers = []
 var colliding_players = []
 
 var center_pos: Vector2
+
 @export var health := 75
-var speed := 100
+@export var speed := 100
 @export var tower_damage: float
 @export var player_damage: float
 
 var time = 0.0
 var attack_time = 1.0
 
+var delta_time 
 signal enemy_died
 
 func _ready() -> void:
@@ -29,10 +31,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	movement()
-	attack_timer(delta)
+	delta_time = delta
 
-func attack_timer(delta: float):
-	time += delta
+
+func attack_timer():
+	time += delta_time
 	if time >= attack_time:
 		time = 0
 		attack()
@@ -64,8 +67,10 @@ func movement():
 func _body_entered(body: Node2D):
 	if body.is_in_group("towers"):
 		colliding_towers.append(body)
+		attack_timer()
 	elif body.is_in_group("player"):
 		colliding_players.append(body)
+		attack_timer()
 
 func _body_exited(body: Node2D):
 	if body.is_in_group("towers"):

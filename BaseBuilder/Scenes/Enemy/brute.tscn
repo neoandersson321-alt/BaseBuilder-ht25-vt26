@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm1x553ed3uhg"]
+
+[ext_resource type="PackedScene" uid="uid://cjr3ol0hwyrty" path="res://Scenes/Enemy/enemy.tscn" id="1_5wt00"]
+[ext_resource type="Texture2D" uid="uid://chg7kddapykd7" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/green_character.png" id="2_66dvc"]
+[ext_resource type="Texture2D" uid="uid://cjgxjje53n85s" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Characters/green_hand.png" id="3_kwsaj"]
+
+[node name="Brute" instance=ExtResource("1_5wt00")]
+scale = Vector2(0.75, 0.75)
+health = 150
+speed = 75
+tower_damage = 5.0
+player_damage = 5.0
+
+[node name="Body" parent="." index="0"]
+texture = ExtResource("2_66dvc")
+
+[node name="RightHand" parent="." index="1"]
+texture = ExtResource("3_kwsaj")
+
+[node name="LeftHand" parent="." index="2"]
+texture = ExtResource("3_kwsaj")
+
+[node name="CollisionShape2D" parent="AttackArea" index="0"]
+position = Vector2(20, 2.38419e-07)

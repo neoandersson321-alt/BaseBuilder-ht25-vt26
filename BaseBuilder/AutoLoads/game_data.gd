@@ -10,7 +10,7 @@ var tower_data = {
 		"tower_cost": {
 			"wood": 10,
 			"stone": 5,
-		},
+	},
 		"upgrade_cost": {
 			"wood": 3,
 			"stone": 3,
@@ -32,6 +32,17 @@ var tower_data = {
 		},
 	},
 	"center_building_t1":{
+		"health": 150,
+		"tower_cost":{
+			"wood": 10,
+			"stone": 10,
+		},
+		"upgrade_cost":{
+			"wood":5,
+			"stone":3
+		},
+	},
+	"wall_t1":{
 		"health": 150,
 		"tower_cost":{
 			"wood": 10,

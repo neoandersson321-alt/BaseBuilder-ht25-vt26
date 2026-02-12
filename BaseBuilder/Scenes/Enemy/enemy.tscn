@@ -8,24 +8,25 @@
 radius = 38.0526
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2t2r4"]
-radius = 44.0
-height = 104.0
+radius = 59.9983
+height = 119.997
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_2t2r4")
 tower_damage = 10.0
 player_damage = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("1_nvvbs")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="RightHand" type="Sprite2D" parent="."]
 position = Vector2(39, 41)
 texture = ExtResource("2_2t2r4")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="LeftHand" type="Sprite2D" parent="."]
 position = Vector2(39, -41)
 texture = ExtResource("2_2t2r4")
 
@@ -34,9 +35,9 @@ shape = SubResource("CircleShape2D_dmwl5")
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(6, 0)
+position = Vector2(20, 2.38419e-07)
 rotation = -1.57834
 shape = SubResource("CapsuleShape2D_2t2r4")

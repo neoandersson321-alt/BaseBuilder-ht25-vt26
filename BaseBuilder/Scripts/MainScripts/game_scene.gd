@@ -9,11 +9,12 @@ var build_location
 var build_type
 var center_pos: Vector2
 
-var possible_builds = {"center_building_t1": 1, "gun_t1": 4, "missile_t1": 2}
-var buildings = {"center_building_t1": 0, "gun_t1": 0, "missile_t1": 0}
+var possible_builds = {"center_building_t1": 1, "gun_t1": 4, "missile_t1": 2, "wall_t1": 10}
+var buildings = {"center_building_t1": 0, "gun_t1": 0, "missile_t1": 0, "wall_t1": 0}
 
 enum passive_towers {
 	center_building_t1,
+	wall_t1
 }
 
 var inventory = {
@@ -23,8 +24,12 @@ var inventory = {
 @export var BaseLayer: TileMapLayer
 @export var BuildingLayer: TileMapLayer
 @export var OutlineLayer: TileMapLayer
+@export var WallLayer: TileMapLayer
+
 @onready var enemy_spawner_scene = preload("res://Scenes/MainScenes/enemy_spawner.tscn")
 @onready var ui = $UI
+
+signal center_building_built
 
 func _ready() -> void:
 	ui.update_inventory()
@@ -58,7 +63,7 @@ func initiate_build_mode(tower_type):
 	build_mode = true
 	build_type = tower_type + "_t1"
 	for tower in passive_towers:
-		if build_type == tower: # fixas snarast
+		if build_type == tower: 
 			passive_tower = true
 	$PreviewLayer.set_tower_preview(build_type, get_global_mouse_position(), passive_tower)
 
@@ -68,7 +73,7 @@ func update_tower_preview():
 	var tile_position = BuildingLayer.map_to_local(current_tile)
 
 	# get_cell_source_id() gör att vi kan få tag på en cell, om den är tom blir resultatet == -1
-	if BuildingLayer.get_cell_source_id(current_tile) == -1 and buildings[build_type] < possible_builds[build_type] and enough_resources(): # Det vi kollar här är ifall det finns någon tile i vårat building lager
+	if BuildingLayer.get_cell_source_id(current_tile) == -1 and WallLayer.get_cell_source_id(current_tile) == -1 and buildings[build_type] < possible_builds[build_type] and enough_resources(): # Det vi kollar här är ifall det finns någon tile i vårat building lager
 		$PreviewLayer.update_tower_preview(tile_position, "91ff63ca")
 		build_valid = true
 		build_location = tile_position
@@ -92,25 +97,44 @@ func verify_and_build():
 		buildings[build_type] += 1
 		if buildings[build_type] == possible_builds[build_type]:
 			ui.disable_button(build_type)
+		
+		if build_type == "wall_t1":
+			build_wall()
+			return
+		
 		var new_tower = load("res://Scenes/Buildings/" +build_type+ ".tscn").instantiate()
 		new_tower.position = build_location
 		$WorldMap/Buildings.add_child(new_tower, true) # readable name används när den raderas
-		$WorldMap/BuildingLayer.set_cell(build_tile, 0, Vector2i(0,0))
+		BuildingLayer.set_cell(build_tile, 0, Vector2i(0,0))
 		spend_resource()
 		if build_type ==  "center_building_t1":
 			center_pos = new_tower.position
+			center_building_built.emit()
 			var enemy_spawner = enemy_spawner_scene.instantiate()
 			add_child(enemy_spawner)
 			ui._connect_to_spawner(enemy_spawner)
 			enemy_spawner.start(new_tower.position)
 
-func delete_tower(building_id:String):
+
+func build_wall():
+	WallLayer.set_cells_terrain_connect([build_tile], 0, 0)
+	var new_tower = load("res://Scenes/Buildings/" +build_type+ ".tscn").instantiate()
+	new_tower.position = build_location
+	$WorldMap/Buildings.add_child(new_tower, true) # readable name används när den raderas
+	BuildingLayer.set_cell(build_tile, 0, Vector2i(0,0))
+	spend_resource()
+
+
+func delete_tower(building_id:String, is_wall: bool = false):
 	var building = $WorldMap/Buildings.get_node(building_id)
-	print(building)
+	if ! is_instance_valid(building):
+		return
 	var building_cell = $WorldMap/BuildingLayer.local_to_map(building.global_position)
 	building.queue_free()
-	$WorldMap/BuildingLayer.set_cell(building_cell, -1)
-	
+	$WorldMap/BuildingLayer.erase_cell(building_cell)
+	if is_wall:
+		WallLayer.set_cells_terrain_connect([building_cell], 0, -1) # erase_cell fungerade inte då det blev problem med att cellerna runt inte uppdaterade sig
+
 
 ###### INVENTORY FUNKCTIONS ########
 func _gain_resource(type:String, amount):

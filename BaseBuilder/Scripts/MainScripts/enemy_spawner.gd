@@ -15,11 +15,17 @@ signal all_waves_done()
 signal countdown_started(countdown_time: float)
 signal wave_cleared
 
+var brute = preload("res://Scenes/Enemy/brute.tscn")
+var enemy = preload("res://Scenes/Enemy/enemy.tscn")
+var speedster = preload("res://Scenes/Enemy/speedster.tscn")
+
 @export var waves = [ 
-		[{"type": preload("res://Scenes/Enemy/enemy.tscn"), "count": 5, "delay": 5.0},
-		{"type": preload("res://Scenes/Enemy/enemy.tscn"), "count": 5, "delay": 0.2}],
-		[{"type": preload("res://Scenes/Enemy/enemy.tscn"), "count": 10, "delay": 0.2}],
-		[{"type": preload("res://Scenes/Enemy/enemy.tscn"), "count": 20, "delay": 0.2}]
+		[
+		{"type": enemy, "count": 5, "delay": 5.0},
+		{"type": brute, "count": 5, "delay": 0.2},
+		],
+		[{"type": enemy, "count": 10, "delay": 0.2}],
+		[{"type": enemy, "count": 20, "delay": 0.2}]
 	 ]
 
 func _ready() -> void:

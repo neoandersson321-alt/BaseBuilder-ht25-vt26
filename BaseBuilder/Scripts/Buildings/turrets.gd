@@ -9,10 +9,11 @@ var health: float
 var range: float
 var rof: float
 var damage: int
-var center_pos: Vector2 # endast relevant om det är centertornet som skapas
+var center_pos: Vector2
 var buc: Dictionary # Base Upgrade Cost
 var upgrade_cost: Dictionary
 
+var center_building_exists: bool = false
 var target: Node2D = null
 signal upgrade_button_pressed
 
@@ -22,11 +23,15 @@ func _ready() -> void:
 		upgrade_button.pressed.connect(_on_upgrade_button_pressed.bind(self))
 	else:
 		upgrade_button.queue_free()
-	center_pos = game_scene.center_pos
+	game_scene.center_building_built.connect(_on_center_building)
 	load_building_stats()
 	fire_timer.wait_time = rof
 	fire_timer.start()
 
+func _on_center_building():
+	center_building_exists = true
+	center_pos = game_scene.center_pos
+	print(center_pos)
 
 func load_building_stats():
 	var data = GameData.tower_data[building_name]
@@ -50,6 +55,7 @@ func _find_target():
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	var closest_target = null
 	var closest_dist_center = range
+	var closest_dist_tower = range
 	
 	for enemy in enemies:
 		if not enemy.is_inside_tree():
@@ -58,11 +64,17 @@ func _find_target():
 		if global_position.distance_to(enemy.global_position) > range:
 			continue
 		
-		var dist_to_center = center_pos.distance_to(enemy.global_position)
-		
-		if dist_to_center < closest_dist_center:
-			closest_dist_center = dist_to_center
-			closest_target = enemy
+		if center_building_exists:
+			var dist_to_center = center_pos.distance_to(enemy.global_position)
+			
+			if dist_to_center < closest_dist_center:
+				closest_dist_center = dist_to_center
+				closest_target = enemy
+		else:
+			var dist_to_tower = global_position.distance_to(enemy.global_position)
+			if dist_to_tower < closest_dist_center:
+				closest_dist_center = dist_to_tower
+				closest_target = enemy
 	
 	target = closest_target
 
