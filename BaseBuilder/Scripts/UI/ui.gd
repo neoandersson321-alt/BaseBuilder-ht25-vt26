@@ -34,6 +34,8 @@ func disable_button(tower):
 
 func re_enable_button(tower):
 	var button: TextureButton = get_node("HUD/BuildBar/" + str(tower))
+	if button.disabled == false:
+		return
 	button.disabled = false
 	button.modulate = Color("ffffff")
 
@@ -46,11 +48,11 @@ func _on_x_speed_button_up() -> void:
 
 
 func _on_x_speed_button_down() -> void:
-	Engine.time_scale = 5
+	Engine.time_scale = 2
 
 ############# WAVE FUNCTIONS #########################
 
-func _connect_to_spawner(spawner):
+func connect_to_spawner(spawner):
 	spawner.connect("wave_countdown_update", _on_wave_countdown_update)
 	spawner.connect("wave_starting", _on_wave_starting)
 	spawner.connect("all_waves_done", _on_all_waves_done)
@@ -85,7 +87,6 @@ func _on_all_waves_done():
 
 func update_inventory():
 	inventory = game_scene.inventory
-	
 	for item in inventory:
 		inventory_to_label[item].text = str(item) + ": " + str(inventory[item])
 

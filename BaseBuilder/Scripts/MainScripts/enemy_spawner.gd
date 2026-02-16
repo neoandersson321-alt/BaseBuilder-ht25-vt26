@@ -21,21 +21,21 @@ var enemy = preload("res://Scenes/Enemy/enemy.tscn")
 var speedster = preload("res://Scenes/Enemy/speedster.tscn")
 
 @export var waves = [ 
-	[
+	[ # Wave 1 lugn start
 		{"type": enemy, "count": 5, "delay": 5.0},
-		{"type": brute, "count": 5, "delay": 0.2},
 	],
-	[
-		{"type": enemy, "count": 10, "delay": 0.2}
+	[ # Wave 2 lite högre press
+		{"type": enemy, "count": 10, "delay": 2}
 	],
-	[
-		{"type": speedster, "count": 10, "delay": 0.2}
+	[ # Wave 3 ny fiende
+		{"type": brute, "count": 5, "delay": 1},
+		{"type": enemy, "count": 10, "delay": 0.5},
 	],
 
 	# Wave 4 – blandad press
 	[
-		{"type": enemy, "count": 8, "delay": 0.3},
-		{"type": speedster, "count": 5, "delay": 0.2},
+		{"type": enemy, "count": 8, "delay": 0.5},
+		{"type": speedster, "count": 5, "delay": 0.5},
 	],
 
 	# Wave 5 – tank + support
@@ -46,7 +46,7 @@ var speedster = preload("res://Scenes/Enemy/speedster.tscn")
 
 	# Wave 6 – tempochock
 	[
-		{"type": speedster, "count": 15, "delay": 0.1},
+		{"type": speedster, "count": 10, "delay": 0.1},
 	],
 
 	# Wave 7 – tryck från flera håll

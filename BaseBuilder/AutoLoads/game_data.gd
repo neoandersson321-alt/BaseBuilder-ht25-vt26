@@ -4,7 +4,7 @@ var tower_data = {
 	"gun_t1": {
 		"damage": 20,
 		"rate_of_fire": 1,
-		"range": 700.0,
+		"range": 350.0,
 		"bullet_speed": 1000,
 		"health": 100,
 		"tower_cost": {
@@ -19,7 +19,7 @@ var tower_data = {
 	"missile_t1":{
 		"damage": 100,
 		"rate_of_fire": 3,
-		"range": 1000.0,
+		"range": 500.0,
 		"bullet_speed": 1500,
 		"health": 70,
 		"tower_cost": {
@@ -43,10 +43,10 @@ var tower_data = {
 		},
 	},
 	"wall_t1":{
-		"health": 150,
+		"health": 100,
 		"tower_cost":{
-			"wood": 10,
-			"stone": 10,
+			"wood": 3,
+			"stone": 3,
 		},
 		"upgrade_cost":{
 			"wood":5,

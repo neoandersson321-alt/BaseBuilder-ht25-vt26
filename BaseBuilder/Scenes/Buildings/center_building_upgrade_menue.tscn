@@ -5,7 +5,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5kj3x"]
 
-[node name="CenterBuildingUpgradeMenue" type="Control" node_paths=PackedStringArray("upgrade_cost_label", "pb_improvement_label", "health_improvement_label", "pb_label", "health_label", "pb_container", "health_container", "upgrade_button", "sell_button", "no_resorces_warning")]
+[node name="CenterBuildingUpgradeMenue" type="Control" node_paths=PackedStringArray("upgrade_cost_label", "pb_improvement_label", "health_improvement_label", "pb_label", "health_label", "pb_container", "health_container", "upgrade_button", "no_resorces_warning")]
 z_index = 500
 layout_mode = 3
 anchors_preset = 0
@@ -20,7 +20,6 @@ health_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Health/CurrentH
 pb_container = NodePath("ColorRect/MarginContainer/VBoxContainer/PossibleBuilds")
 health_container = NodePath("ColorRect/MarginContainer/VBoxContainer/Health")
 upgrade_button = NodePath("ColorRect/MarginContainer/UpgradeButton")
-sell_button = NodePath("")
 no_resorces_warning = NodePath("ColorRect/NoResources")
 
 [node name="ColorRect" type="ColorRect" parent="."]

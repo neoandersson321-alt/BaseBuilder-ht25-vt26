@@ -17,16 +17,18 @@
 [ext_resource type="PackedScene" uid="uid://38jimit4omgo" path="res://Scenes/UI/lose_screen.tscn" id="13_jvyjn"]
 [ext_resource type="PackedScene" uid="uid://dg5gmgcabn6b4" path="res://Scenes/UI/win_screen.tscn" id="14_541wh"]
 
-[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer", "WallLayer", "lose_screen", "win_screen") groups=["game_scene"]]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "WallLayer", "lose_screen", "win_screen") groups=["game_scene"]]
 script = ExtResource("1_lohlh")
 BaseLayer = NodePath("WorldMap/BaseLayer")
 BuildingLayer = NodePath("WorldMap/BuildingLayer")
-OutlineLayer = NodePath("WorldMap/OutlineLayer")
 WallLayer = NodePath("WorldMap/WallLayer")
 lose_screen = NodePath("UI/LoseScreen")
 win_screen = NodePath("UI/WinScreen")
 
 [node name="WorldMap" parent="." instance=ExtResource("1_jjgbg")]
+
+[node name="SpawnPos" type="Marker2D" parent="WorldMap"]
+position = Vector2(2414, 1545)
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_label", "stone_label", "wood_label", "high_wave_label_lost", "high_wave_label_won")]
 script = ExtResource("3_0h1f8")
@@ -287,6 +289,7 @@ offset_right = -757.0
 offset_bottom = -420.0
 
 [node name="WinScreen" parent="UI" instance=ExtResource("14_541wh")]
+visible = false
 offset_left = 144.0
 offset_top = 67.0
 offset_right = 144.0

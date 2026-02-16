@@ -13,7 +13,7 @@ height = 208.139
 
 [node name="Stone" instance=ExtResource("1_i63e0")]
 scale = Vector2(0.5, 0.5)
-mine_amount = 50
+mine_amount = 2
 resource_type = "stone"
 
 [node name="Sprite2D" parent="." index="0"]

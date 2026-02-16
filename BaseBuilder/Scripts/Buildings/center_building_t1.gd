@@ -54,6 +54,7 @@ func upgrade_stats():
 		return
 	health *= 1.1
 	game_scene.update_possible_builds(cur_possible_builds)
+	update_upgrade_cost()
 	upgrade_menue.open_menue(upgrade_cost, updated_pb(), health * 1.1, cur_possible_builds, health)
 ############ damage functions ##############
 

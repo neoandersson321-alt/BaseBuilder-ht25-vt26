@@ -34,7 +34,8 @@ func _retry():
 	var game_scene = load("res://Scenes/MainScenes/game_scene.tscn").instantiate()
 	game_scene.main_menue.connect(_back_to_main_menue)
 	game_scene.retry.connect(_retry)
-	add_child(game_scene)
+	add_child(game_scene, true)
+	game_scene._on_new_attempt()
 
 func reconnect_buttons():
 	new_game_button = $MainMenu/Margin/VBox/NewGame
