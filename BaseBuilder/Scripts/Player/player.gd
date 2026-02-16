@@ -11,7 +11,8 @@ const HISTORY_LENGHT = 7
 const MIN_ATTACK_ANGLE = PI/2
 const MAX_ATTACK_ANGLE = PI
 var weapon_scenes = {
-	"1": preload("res://Scenes/Player/pickaxe.tscn")
+	"1": preload("res://Scenes/Player/pickaxe.tscn"),
+	"2": preload("res://Scenes/Player/dagger.tscn")
 }
 
 @onready var weapon_slot = $Weapon
@@ -76,7 +77,6 @@ func _on_attack_timer_timeout() -> void:
 
 func take_damage(damage):
 	health -= damage
-	print(health)
 	if health <= 0:
 		die()
 

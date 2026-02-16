@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://jpel4dfak3mm"]
+[gd_scene load_steps=17 format=3 uid="uid://jpel4dfak3mm"]
 
 [ext_resource type="PackedScene" uid="uid://b3l8pjglwhk1g" path="res://Scenes/MainScenes/world_map.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dxa5m7dv0fs3j" path="res://Scripts/MainScripts/game_scene.gd" id="1_lohlh"]
@@ -8,28 +8,33 @@
 [ext_resource type="Script" uid="uid://dejioli3i5fyo" path="res://Scripts/UI/preview_layer.gd" id="3_kilg5"]
 [ext_resource type="Texture2D" uid="uid://4xvu43538p0d" path="res://Resources/Towers/towerDefense_tile251.png" id="4_jwv4s"]
 [ext_resource type="Texture2D" uid="uid://bm1xx24hx6vns" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/campfire.png" id="7_2usgn"]
-[ext_resource type="PackedScene" uid="uid://b0peupka26mca" path="res://Scenes/UI/upgrade_screen.tscn" id="7_ibdpl"]
 [ext_resource type="Texture2D" uid="uid://c8hmcvc2wpbiq" path="res://Resources/UI/kenney_game-icons/PNG/Black/2x/pause.png" id="8_0h1f8"]
 [ext_resource type="Texture2D" uid="uid://dyjbd07rr0ain" path="res://Resources/KennyDungeonScribbles/PNG/Default (64px)/wall_corner.png" id="8_jvyjn"]
 [ext_resource type="PackedScene" uid="uid://d4npm3v55typf" path="res://Scenes/Player/player.tscn" id="9_674w2"]
 [ext_resource type="Texture2D" uid="uid://c6d2rn838qjlb" path="res://Resources/UI/kenney_game-icons/PNG/Black/2x/fastForward.png" id="9_sl8sw"]
 [ext_resource type="PackedScene" uid="uid://bep070odlbo2q" path="res://Scenes/UI/pause_menue.tscn" id="11_jvyjn"]
 [ext_resource type="FontFile" uid="uid://bv5wv5mjystu2" path="res://Resources/Fonts/Kenney Future Narrow.ttf" id="11_sl8sw"]
+[ext_resource type="PackedScene" uid="uid://38jimit4omgo" path="res://Scenes/UI/lose_screen.tscn" id="13_jvyjn"]
+[ext_resource type="PackedScene" uid="uid://dg5gmgcabn6b4" path="res://Scenes/UI/win_screen.tscn" id="14_541wh"]
 
-[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer", "WallLayer") groups=["game_scene"]]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("BaseLayer", "BuildingLayer", "OutlineLayer", "WallLayer", "lose_screen", "win_screen") groups=["game_scene"]]
 script = ExtResource("1_lohlh")
 BaseLayer = NodePath("WorldMap/BaseLayer")
 BuildingLayer = NodePath("WorldMap/BuildingLayer")
 OutlineLayer = NodePath("WorldMap/OutlineLayer")
 WallLayer = NodePath("WorldMap/WallLayer")
+lose_screen = NodePath("UI/LoseScreen")
+win_screen = NodePath("UI/WinScreen")
 
 [node name="WorldMap" parent="." instance=ExtResource("1_jjgbg")]
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_label", "stone_label", "wood_label")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_label", "stone_label", "wood_label", "high_wave_label_lost", "high_wave_label_won")]
 script = ExtResource("3_0h1f8")
 wave_label = NodePath("HUD/WaveLabel")
 stone_label = NodePath("HUD/PlayerInfo/MarginContainer/HBoxContainer/StoneLabel")
 wood_label = NodePath("HUD/PlayerInfo/MarginContainer/HBoxContainer/WoodLabel")
+high_wave_label_lost = NodePath("LoseScreen/ColorRect/MarginContainer/VBoxContainer/HighWave/HighestWave")
+high_wave_label_won = NodePath("WinScreen/ColorRect/MarginContainer/VBoxContainer/HighWave/HighestWave")
 
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 3
@@ -38,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 
 [node name="BuildBar" type="HBoxContainer" parent="UI/HUD"]
@@ -268,9 +274,23 @@ one_shot = true
 mouse_filter = 2
 color = Color(3.4594e-07, 0.13318, 0.13318, 0.643137)
 
-[node name="UpgradeScreen" parent="UI" instance=ExtResource("7_ibdpl")]
+[node name="LoseScreen" parent="UI" instance=ExtResource("13_jvyjn")]
 visible = false
-mouse_filter = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -757.0
+offset_top = -420.0
+offset_right = -757.0
+offset_bottom = -420.0
+
+[node name="WinScreen" parent="UI" instance=ExtResource("14_541wh")]
+offset_left = 144.0
+offset_top = 67.0
+offset_right = 144.0
+offset_bottom = 67.0
 
 [node name="PreviewLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -285,6 +305,12 @@ script = ExtResource("3_kilg5")
 [connection signal="pressed" from="UI/HUD/GameButtons/GameControls/2xSpeed" to="UI" method="_on_x_speed_pressed"]
 [connection signal="pressed" from="UI/HUD/GameButtons/GameControls/PauseButton" to="UI" method="_on_pause_button_pressed"]
 [connection signal="timeout" from="UI/HUD/WaveLabel/Timer" to="UI" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/LoseScreen/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/MainMenue" to="UI" method="_on_main_menue_pressed"]
+[connection signal="pressed" from="UI/LoseScreen/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="UI" method="_on_retry_pressed"]
+[connection signal="pressed" from="UI/WinScreen/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/MainMenue" to="UI" method="_on_main_menue_pressed"]
+[connection signal="pressed" from="UI/WinScreen/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="UI" method="_on_retry_pressed"]
 
 [editable path="WorldMap"]
 [editable path="UI/HUD/PauseMenue"]
+[editable path="UI/LoseScreen"]
+[editable path="UI/WinScreen"]

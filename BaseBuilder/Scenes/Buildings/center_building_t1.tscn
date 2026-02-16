@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl85inx7u46jk"]
+[gd_scene load_steps=6 format=3 uid="uid://bl85inx7u46jk"]
 
-[ext_resource type="Script" uid="uid://dbdcslrqnuvmm" path="res://Scripts/Buildings/passive_tower.gd" id="1_151t3"]
+[ext_resource type="Script" uid="uid://dw2jnisc6b4ct" path="res://Scripts/Buildings/center_building_t1.gd" id="1_151t3"]
 [ext_resource type="Texture2D" uid="uid://bm1xx24hx6vns" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/campfire.png" id="1_vc6j2"]
+[ext_resource type="PackedScene" uid="uid://c4tn5ig8h556n" path="res://Scenes/Buildings/center_building_upgrade_menue.tscn" id="3_dpt08"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vc6j2"]
 radius = 52.345
@@ -21,10 +22,11 @@ shape = SubResource("CircleShape2D_vc6j2")
 texture = ExtResource("1_vc6j2")
 
 [node name="UpgradeButton" type="Button" parent="."]
-offset_left = -26.0
-offset_top = -26.0
-offset_right = 26.0
-offset_bottom = 26.0
+custom_minimum_size = Vector2(100, 100)
+offset_left = -50.0
+offset_top = -48.0
+offset_right = 50.0
+offset_bottom = 52.0
 theme_override_styles/focus = SubResource("StyleBoxFlat_vc6j2")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_vc6j2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_vc6j2")
@@ -36,3 +38,15 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_vc6j2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vc6j2")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_vc6j2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vc6j2")
+toggle_mode = true
+
+[node name="CenterBuildingUpgradeMenue" parent="." instance=ExtResource("3_dpt08")]
+offset_left = -467.0
+offset_top = -683.0
+offset_right = -467.0
+offset_bottom = -683.0
+
+[node name="UpgradeCost" parent="CenterBuildingUpgradeMenue/ColorRect/MarginContainer/VBoxContainer/UpgradeCost" index="1"]
+custom_minimum_size = Vector2(280, 0)
+
+[editable path="CenterBuildingUpgradeMenue"]

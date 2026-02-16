@@ -1,0 +1,151 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4tn5ig8h556n"]
+
+[ext_resource type="Script" uid="uid://bithsyulpwgor" path="res://Scripts/Buildings/center_building_upgrade_menue.gd" id="1_5kj3x"]
+[ext_resource type="Texture2D" uid="uid://dd8qitpwop168" path="res://Resources/UI/kenney_game-icons/PNG/White/1x/arrowRight.png" id="2_mx51r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5kj3x"]
+
+[node name="CenterBuildingUpgradeMenue" type="Control" node_paths=PackedStringArray("upgrade_cost_label", "pb_improvement_label", "health_improvement_label", "pb_label", "health_label", "pb_container", "health_container", "upgrade_button", "sell_button", "no_resorces_warning")]
+z_index = 500
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(2, 2)
+mouse_filter = 2
+script = ExtResource("1_5kj3x")
+upgrade_cost_label = NodePath("ColorRect/MarginContainer/VBoxContainer/UpgradeCost/UpgradeCost")
+pb_improvement_label = NodePath("ColorRect/MarginContainer/VBoxContainer/HBoxContainer/PBImprovement")
+health_improvement_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Health/HealthImprovement")
+pb_label = NodePath("ColorRect/MarginContainer/VBoxContainer/HBoxContainer/CurrentPB")
+health_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Health/CurrentHealth")
+pb_container = NodePath("ColorRect/MarginContainer/VBoxContainer/PossibleBuilds")
+health_container = NodePath("ColorRect/MarginContainer/VBoxContainer/Health")
+upgrade_button = NodePath("ColorRect/MarginContainer/UpgradeButton")
+sell_button = NodePath("")
+no_resorces_warning = NodePath("ColorRect/NoResources")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 487.0
+offset_bottom = 301.0
+mouse_filter = 2
+color = Color(0.121569, 0.109804, 0.262745, 0.392157)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="UpgradeCost" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/UpgradeCost"]
+layout_mode = 2
+text = "Upgrade Cost:"
+
+[node name="UpgradeCost" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/UpgradeCost"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5kj3x")
+
+[node name="PossibleBuilds" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/PossibleBuilds"]
+layout_mode = 2
+text = "Possible Builds:"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentPB" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+
+[node name="Arrow" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 0.941176, 1)
+layout_mode = 2
+texture = ExtResource("2_mx51r")
+stretch_mode = 2
+
+[node name="PBImprovement" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+
+[node name="Health" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Health"]
+layout_mode = 2
+text = "Health:"
+
+[node name="CurrentHealth" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Health"]
+layout_mode = 2
+
+[node name="Arrow" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/Health"]
+modulate = Color(1, 1, 0.941176, 1)
+layout_mode = 2
+texture = ExtResource("2_mx51r")
+expand_mode = 2
+
+[node name="HealthImprovement" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Health"]
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="ColorRect/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Upgrade"
+
+[node name="NoResources" type="ColorRect" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -125.5
+offset_right = 206.0
+offset_bottom = 125.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.0745098, 0.109804, 0.615686)
+
+[node name="Label" type="Label" parent="ColorRect/NoResources"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -0.166677
+offset_top = -9.16666
+offset_right = 411.833
+offset_bottom = 8.83334
+grow_vertical = 2
+text = "NOT enough resources!!!!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ColorRect/MarginContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

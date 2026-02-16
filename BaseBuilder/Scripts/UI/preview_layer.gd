@@ -14,7 +14,7 @@ func set_tower_preview(tower_type, mouse_position, passive: bool):
 	if ! preview_passive:
 		var range_texture = Sprite2D.new()
 		range_texture.position = Vector2.ZERO
-		var scaling = GameData.tower_data[tower_type]["range"]/ 600.0 # viktigt med .0 för att få en float
+		var scaling = 2.0 * GameData.tower_data[tower_type]["range"]/ 600.0 # viktigt med .0 för att få en float
 		range_texture.scale = Vector2(scaling, scaling)
 		var texture = load("res://Resources/UI/range_overlay.png")
 		range_texture.texture = texture

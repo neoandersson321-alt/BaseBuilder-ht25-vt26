@@ -1,0 +1,177 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1krsmj3f1y3j"]
+
+[ext_resource type="Script" uid="uid://c2xpljoc0ar0r" path="res://Scripts/Buildings/tower_upgrade_menue.gd" id="1_ir1iu"]
+[ext_resource type="Texture2D" uid="uid://dd8qitpwop168" path="res://Resources/UI/kenney_game-icons/PNG/White/1x/arrowRight.png" id="2_bryik"]
+
+[node name="TowerUpgradeMenue" type="Control" node_paths=PackedStringArray("upgrade_cost_label", "range_improvement_label", "damage_improvement_label", "rof_improvement_label", "range_label", "damage_label", "rof_label", "range_container", "damage_container", "rof_container", "upgrade_button", "no_resorces_warning")]
+z_index = 500
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 2
+script = ExtResource("1_ir1iu")
+upgrade_cost_label = NodePath("ColorRect/MarginContainer/VBoxContainer/UpgradeCost/UpgradeCost")
+range_improvement_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Range/RangeImprovement")
+damage_improvement_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Damage/DamageImprovement")
+rof_improvement_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Fire Rate/FireRateImprovement")
+range_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Range/CurrentRange")
+damage_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Damage/CurrentDamage")
+rof_label = NodePath("ColorRect/MarginContainer/VBoxContainer/Fire Rate/CurrentFireRate")
+range_container = NodePath("ColorRect/MarginContainer/VBoxContainer/Range")
+damage_container = NodePath("ColorRect/MarginContainer/VBoxContainer/Damage")
+rof_container = NodePath("ColorRect/MarginContainer/VBoxContainer/Fire Rate")
+upgrade_button = NodePath("ColorRect/MarginContainer/UpgradeButton")
+no_resorces_warning = NodePath("ColorRect/NoResources")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 487.0
+offset_bottom = 301.0
+mouse_filter = 2
+color = Color(0.121569, 0.109804, 0.262745, 0.392157)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="UpgradeButton" type="Button" parent="ColorRect/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Upgrade"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="UpgradeCost" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/UpgradeCost"]
+layout_mode = 2
+text = "Upgrade Cost:"
+
+[node name="UpgradeCost" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/UpgradeCost"]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Range" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Range"]
+layout_mode = 2
+text = "Range:"
+
+[node name="CurrentRange" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Range"]
+layout_mode = 2
+
+[node name="Arrow" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/Range"]
+modulate = Color(1, 1, 0.941176, 1)
+layout_mode = 2
+texture = ExtResource("2_bryik")
+expand_mode = 2
+
+[node name="RangeImprovement" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Range"]
+layout_mode = 2
+
+[node name="Damage" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Damage"]
+layout_mode = 2
+text = "Damage"
+
+[node name="CurrentDamage" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Damage"]
+layout_mode = 2
+
+[node name="Arrow" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/Damage"]
+modulate = Color(1, 1, 0.941176, 1)
+layout_mode = 2
+texture = ExtResource("2_bryik")
+expand_mode = 2
+
+[node name="DamageImprovement" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Damage"]
+layout_mode = 2
+
+[node name="Fire Rate" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Fire Rate"]
+layout_mode = 2
+text = "Fire Rate:"
+
+[node name="CurrentFireRate" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Fire Rate"]
+layout_mode = 2
+
+[node name="Arrow" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/Fire Rate"]
+modulate = Color(1, 1, 0.941176, 1)
+layout_mode = 2
+texture = ExtResource("2_bryik")
+expand_mode = 2
+
+[node name="FireRateImprovement" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Fire Rate"]
+layout_mode = 2
+
+[node name="NoResources" type="ColorRect" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -125.5
+offset_right = 206.0
+offset_bottom = 125.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.0745098, 0.109804, 0.615686)
+
+[node name="Label" type="Label" parent="ColorRect/NoResources"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -0.166677
+offset_top = -9.16666
+offset_right = 411.833
+offset_bottom = 8.83334
+grow_vertical = 2
+text = "NOT enough resources!!!!"
+horizontal_alignment = 1
+
+[node name="SellButton" type="Button" parent="ColorRect"]
+custom_minimum_size = Vector2(75, 50)
+layout_mode = 2
+offset_left = 349.333
+offset_top = 220.0
+offset_right = 424.333
+offset_bottom = 270.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Sell"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="ColorRect/SellButton" to="." method="_on_sell_button_pressed"]

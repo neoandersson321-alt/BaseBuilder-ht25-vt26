@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://38jimit4omgo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x10tc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1sde"]
+
+[node name="LoseScreen" type="Control"]
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(2000, 1500)
+layout_mode = 0
+offset_left = -304.667
+offset_top = -287.333
+offset_right = 1695.33
+offset_bottom = 1212.67
+color = Color(0.222256, 1.54921e-07, 5.41471e-08, 0.294118)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1016.0
+offset_bottom = 530.0
+mouse_filter = 2
+color = Color(0.4, 0, 0, 0.631373)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="GameOver" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Game Over!"
+
+[node name="HighWave" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HighWave"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Highest wave reached:"
+
+[node name="HighestWave" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HighWave"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_x10tc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+z_index = 1000
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="MainMenue" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+process_mode = 2
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Back to main menue"
+autowrap_mode = 1
+
+[node name="VSeparator" type="VSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_d1sde")
+
+[node name="Retry" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+process_mode = 2
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Retry
+"

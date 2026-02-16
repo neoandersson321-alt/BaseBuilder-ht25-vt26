@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm0q6hu2fwkjn"]
+[gd_scene load_steps=9 format=3 uid="uid://dm0q6hu2fwkjn"]
 
 [ext_resource type="Texture2D" uid="uid://bbxu5a3hio4dl" path="res://Resources/Towers/towerDefense_tile181.png" id="1_0cjmx"]
 [ext_resource type="Script" uid="uid://dtc6jprex33xw" path="res://Scripts/Buildings/gun_t1.gd" id="1_d3djr"]
 [ext_resource type="Texture2D" uid="uid://djxhp4s0yjp3y" path="res://Resources/Towers/towerDefense_tile249.png" id="2_d3djr"]
 [ext_resource type="PackedScene" uid="uid://c8bcsnto1xq3n" path="res://Scenes/Buildings/Projectiles/gun_bullet.tscn" id="2_tf21a"]
+[ext_resource type="PackedScene" uid="uid://d1krsmj3f1y3j" path="res://Scenes/Buildings/TowerUpgradeMenue.tscn" id="5_28c6y"]
+[ext_resource type="Texture2D" uid="uid://cdlero2jeqbrl" path="res://Resources/UI/range_overlay.png" id="6_18jjn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88kni"]
 size = Vector2(52.5, 51.5)
@@ -48,7 +50,15 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tf21a")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tf21a")
+toggle_mode = true
 
 [node name="FireTimer" type="Timer" parent="."]
 
 [node name="Bullets" type="Node2D" parent="."]
+
+[node name="TowerUpgradeMenue" parent="." instance=ExtResource("5_28c6y")]
+
+[node name="RangeOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.752941, 1, 0.666667)
+texture = ExtResource("6_18jjn")

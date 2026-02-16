@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://druij32svyfrp"]
+
+[ext_resource type="Script" uid="uid://btkgsynj0rf3c" path="res://Scripts/Player/weapon_base.gd" id="1_g1brv"]
+[ext_resource type="Texture2D" uid="uid://bi1c88oay5w7s" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Items/weapon_sword.png" id="2_uxs7b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sep1r"]
+radius = 19.0
+height = 66.0
+
+[node name="Dagger" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_g1brv")
+damage = 20
+cooldown_time = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("CapsuleShape2D_sep1r")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -17)
+texture = ExtResource("2_uxs7b")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true

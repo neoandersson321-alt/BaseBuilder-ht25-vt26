@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlhk4kxlh3l27"]
 
-[ext_resource type="Script" uid="uid://kt8gnewq7edv" path="res://Scripts/Player/pickaxe.gd" id="1_n2jix"]
+[ext_resource type="Script" uid="uid://btkgsynj0rf3c" path="res://Scripts/Player/weapon_base.gd" id="1_mcqkr"]
 [ext_resource type="Texture2D" uid="uid://bbaobjc8dxliv" path="res://Resources/KennyDungeonScribbles/PNG/Double (128px)/Items/weapon_hammer.png" id="2_mcqkr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcqkr"]
@@ -10,8 +10,9 @@ size = Vector2(71.3332, 48.0003)
 scale = Vector2(1.5, 1.5)
 collision_layer = 16
 collision_mask = 4
-script = ExtResource("1_n2jix")
+script = ExtResource("1_mcqkr")
 damage = 10
+cooldown_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(34.6667, 0.33333)
@@ -21,3 +22,11 @@ shape = SubResource("RectangleShape2D_mcqkr")
 [node name="Sprite" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("2_mcqkr")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

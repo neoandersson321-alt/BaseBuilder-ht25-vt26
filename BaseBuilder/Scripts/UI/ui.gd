@@ -3,9 +3,13 @@ extends CanvasLayer
 @onready var game_scene = get_parent()
 @onready var pause_menue = $HUD/PauseMenue
 @onready var countdown_timer = $HUD/WaveLabel/Timer
+
+
 @export var wave_label: Label
 @export var stone_label: Label
 @export var wood_label: Label
+@export var high_wave_label_lost: Label
+@export var high_wave_label_won: Label
 
 @onready var inventory_to_label = {
 	"stone": stone_label, 
@@ -15,6 +19,8 @@ extends CanvasLayer
 var inventory
 var wave_time # time between waves
 var tbw # original time between waves
+var highest_wave: int = 0
+
 func _ready() -> void:
 	inventory = game_scene.inventory
 	wave_label.visible = false
@@ -22,9 +28,14 @@ func _ready() -> void:
 ##################### UI BUTTONS ###############
 
 func disable_button(tower):
-	var button = get_node("HUD/BuildBar/" + str(tower))
+	var button: TextureButton = get_node("HUD/BuildBar/" + str(tower))
 	button.disabled = true
 	button.modulate = Color("828282af")
+
+func re_enable_button(tower):
+	var button: TextureButton = get_node("HUD/BuildBar/" + str(tower))
+	button.disabled = false
+	button.modulate = Color("ffffff")
 
 func _on_pause_button_pressed() -> void:
 	pause()
@@ -59,14 +70,17 @@ func _on_wave_countdown_update(time_left):
 
 
 func _on_wave_starting(wave_num):
+	if wave_num > highest_wave:
+		highest_wave = wave_num
 	wave_label.text = "Wave " + str(wave_num) + " incoming!"
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	wave_label.visible = false
 
 
 func _on_all_waves_done():
 	wave_label.visible = true
 	wave_label.text = "All waves completed!"
+	game_scene.game_won()
 
 
 func update_inventory():
@@ -82,6 +96,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		pause()
 
 func pause():
+	if ! is_instance_valid(pause_menue):
+		return
 	get_tree().paused = true
 	pause_menue.visible = true
 
@@ -93,3 +109,19 @@ func _on_timer_timeout() -> void:
 		_on_wave_countdown_update(wave_time)
 	else:
 		wave_time = tbw
+
+
+func _on_main_menue_pressed() -> void:
+	print("main_menue")
+	game_scene.emit_signal("main_menue")
+
+
+
+func _on_retry_pressed() -> void:
+	game_scene.emit_signal("retry")
+
+func lost():
+	high_wave_label_lost.text = str(highest_wave)
+
+func won():
+	high_wave_label_won.text = str(highest_wave)

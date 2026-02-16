@@ -7,10 +7,15 @@ var build_valid = false
 var build_tile
 var build_location
 var build_type
-var center_pos: Vector2
 
-var possible_builds = {"center_building_t1": 1, "gun_t1": 4, "missile_t1": 2, "wall_t1": 10}
+var center_pos: Vector2
+var center_building: StaticBody2D
+
+var possible_builds = {"center_building_t1": 1, "gun_t1": 0, "missile_t1": 0, "wall_t1": 0}
 var buildings = {"center_building_t1": 0, "gun_t1": 0, "missile_t1": 0, "wall_t1": 0}
+
+var cb_upgrade_nr: int = 0 # enter_building uppgrade nr, = hur många gånger cetner building upgraderats
+# {"center_building_t1": 1, "gun_t1": 4, "missile_t1": 2, "wall_t1": 10}
 
 enum passive_towers {
 	center_building_t1,
@@ -26,10 +31,15 @@ var inventory = {
 @export var OutlineLayer: TileMapLayer
 @export var WallLayer: TileMapLayer
 
+@export var lose_screen: Control
+@export var win_screen: Control
+
 @onready var enemy_spawner_scene = preload("res://Scenes/MainScenes/enemy_spawner.tscn")
 @onready var ui = $UI
 
 signal center_building_built
+signal main_menue
+signal retry
 
 func _ready() -> void:
 	ui.update_inventory()
@@ -41,7 +51,7 @@ func _ready() -> void:
 	check_building_validity()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
 
@@ -110,11 +120,38 @@ func verify_and_build():
 		if build_type ==  "center_building_t1":
 			center_pos = new_tower.position
 			center_building_built.emit()
+			center_building = new_tower
+			update_possible_builds(possible_builds)
 			var enemy_spawner = enemy_spawner_scene.instantiate()
 			add_child(enemy_spawner)
 			ui._connect_to_spawner(enemy_spawner)
 			enemy_spawner.start(new_tower.position)
 
+func update_possible_builds(builds_dict: Dictionary, is_cb_upgrade: bool = false):
+	if cb_upgrade_nr == 0 and ! is_cb_upgrade:
+		builds_dict = {"center_building_t1": 1, "gun_t1": 4, "missile_t1": 2, "wall_t1": 20}
+		center_building.cur_possible_builds = builds_dict
+	elif is_cb_upgrade:
+		builds_dict["gun_t1"] += 2
+		builds_dict["missile_t1"] += 1
+		builds_dict["wall_t1"] += 1
+		return builds_dict
+	
+	else:
+		builds_dict["gun_t1"] += 2
+		builds_dict["missile_t1"] += 1
+		builds_dict["wall_t1"] += 1
+		center_building.cur_possible_builds = builds_dict
+	
+	if is_cb_upgrade:
+		return
+	
+	possible_builds = builds_dict
+	cb_upgrade_nr += 1
+	
+	for building in possible_builds:
+		if buildings[building] < possible_builds[building]:
+			ui.re_enable_button(building)
 
 func build_wall():
 	WallLayer.set_cells_terrain_connect([build_tile], 0, 0)
@@ -138,7 +175,6 @@ func delete_tower(building_id:String, is_wall: bool = false):
 
 ###### INVENTORY FUNKCTIONS ########
 func _gain_resource(type:String, amount):
-	print(type + ": " + str(amount))
 	inventory[type] += amount
 	ui.update_inventory()
 
@@ -167,7 +203,6 @@ func enough_resources_upgrade(upgrade_cost: Dictionary):
 		if inventory[resource] < upgrade_cost[resource]:
 			return false
 	spend_resource_upgrade(upgrade_cost)
-	print(upgrade_cost)
 	return true
 
 ###### BUILDING CHECK ##############
@@ -183,3 +218,18 @@ func register_single_mineable(mineable: Mineable):
 	mineable.add_resource.connect(_gain_resource)
 
 ############
+
+func game_lost():
+	# ):
+	get_tree().paused = true
+	if is_instance_valid(ui.pause_menue):
+		ui.pause_menue.queue_free()
+	lose_screen.visible = true
+	ui.lost()
+
+func game_won():
+	# (:
+	get_tree().paused= true
+	if is_instance_valid(ui.pause_menue):
+		ui.pause_menue.queue_free()
+	win_screen.visible = true
